@@ -9,8 +9,8 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
 [Velocity CLI releases](https://github.com/velocity-quest/velocity-cli/releases),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.1.1.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.1.1`.
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.1.2.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.1.2`.
 
 ```sh
 velocity --version
@@ -154,6 +154,28 @@ deduplicates IDs during a run, and retries bounded outages. `--after` inclusivel
 replays a timestamp so consumers can deduplicate IDs on restart; this is polling,
 not a guarantee about live progress or transaction commit order.
 
+## Issue links and subscriptions
+
+```bash
+vel issues create-issue-relation --source-id ENGIN-1 --target-id ENGIN-2 --type BLOCKS
+vel issues remove-issue-relation --source-id ENGIN-2 --target-id ENGIN-1 --type BLOCKED_BY
+vel issues subscribe-issue --issue-id ENGIN-1
+vel issues get ENGIN-1 --select '{ id identifier relations { id type source { identifier } target { identifier } } subscribers { id displayName } }'
+vel issues unsubscribe-issue --issue-id ENGIN-1
+```
+
+Both endpoints must share the selected workspace. Dependencies reject self-links
+and cycles even under concurrent additions. `BLOCKED_BY` reverses `BLOCKS`;
+`RELATES_TO` is symmetric. `DUPLICATE` records that the source duplicates the
+target and preserves both issues and statuses. Repeated create/remove/subscribe
+calls are idempotent and do not duplicate history or notifications.
+
+Subscriptions add Inbox notifications for later updates and comments, excluding
+your own actions. Unsubscribing removes your explicit subscription; assignments
+and mentions retain their own notifications. Existing status/delete commands
+manage issue lifecycle. Issue archive and reusable template operations are
+currently unavailable.
+
 ## Browser flows, compatibility and known gaps
 
 `vel open security` hands MFA/verification to the selected workspace's exact
@@ -171,8 +193,7 @@ both binary names.
 
 Tracked API gaps: ENGIN-439 (local issue attachments), ENGIN-461 (uncursored
 collections), ENGIN-462 (account deletion/export/email and functional notification
-preferences), ENGIN-463 (self-service workspace leave), ENGIN-464 (issue
-relations/subscriptions). See the matrix for exact available commands and
+preferences). See the matrix for exact available commands and
 capability/browser handoffs. Supported platform operations are implemented; these
 missing platform APIs are recorded rather than hidden behind direct database access.
 
