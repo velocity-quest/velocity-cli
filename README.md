@@ -9,8 +9,8 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
 [Velocity CLI releases](https://github.com/velocity-quest/velocity-cli/releases),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.1.0.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.1.0`.
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.1.1.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.1.1`.
 
 ```sh
 velocity --version
@@ -32,6 +32,13 @@ Management sign-in also supports account-only access before creating a workspace
 Later membership does not enlarge an existing grant: sign in again to select a
 new workspace. Current membership and roles are checked on every command.
 Use **Use a different account** on consent when adding a second identity.
+
+`vel --workspace ID_OR_SLUG workspaces leave` removes your own membership. The
+last owner must promote another owner or delete the workspace first. Leaving
+removes your team memberships, workspace API/MCP keys and automation hooks.
+OAuth grants that include this workspace are revoked in full: sign in again
+to approve access to your remaining workspaces. Other account profiles are not
+changed. Workspace deletion has its existing separate owner-only command.
 
 SSH/headless: `velocity login --account work --no-browser` prints an issuer-hosted
 link and reads the paste code privately. Login URLs/prompts use stderr; JSON
