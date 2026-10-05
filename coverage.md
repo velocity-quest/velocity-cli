@@ -1,6 +1,6 @@
 # Velocity CLI feature coverage
 
-Version 0.1.0 · protocol 1 · schema `f4ac389e6e2baa56c1579635797898d63b4004f9afd088030e3f40bc3e4a38c5`
+Version 0.2.5 · protocol 1 · schema `22fb4540d32f7cd72e50dfbf3175bc8206dc58f2e094561256f42e25974a2419`
 
 Generated from all schema modules, REST routes, MCP tool definitions and authenticated product pages. CI rejects stale coverage and unclassified REST routes. Every GraphQL root operation has a typed command; `--select` exposes optional nested histories, relations, team members and PRD versions. Server roles, scopes, plans and feature gates remain authoritative.
 
@@ -10,101 +10,161 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 |---|---|---|---|---|---|
 | base | `velocity api node` | `node` | cli:read | Selected workspace | Single result / recorded summary |
 | ai-usage | `velocity ai ai-usage-report` | `aiUsageReport` | cli:read | Selected workspace | Single result / recorded summary |
-| ai-usage | `velocity ai ai-usage` | `aiUsage` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| ai-usage | `velocity ai ai-usage` | `aiUsage` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
 | ai-usage | `velocity ai ai-budget-status` | `aiBudgetStatus` | cli:read | Selected workspace | Single result / recorded summary |
 | ai-usage | `velocity ai ai-usage-log` | `aiUsageLog` | cli:read | Selected workspace | Offset |
-| ai-usage | `velocity ai ai-feature-access` | `aiFeatureAccess` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| api | `velocity keys api-keys` | `apiKeys` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| api | `velocity keys oauth-apps` | `oauthApps` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| api | `velocity keys user-api-keys` | `userApiKeys` | cli:read | Account | Server-limited array; ENGIN-461 |
+| ai-usage | `velocity ai ai-feature-access` | `aiFeatureAccess` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
+| api | `velocity keys api-keys-legacy` | `apiKeys` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| api | `velocity keys oauth-apps-legacy` | `oauthApps` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| api | `velocity keys user-api-keys-legacy` | `userApiKeys` | cli:read | Account | Legacy array; prefer paged command |
+| api | `velocity keys api-keys` | `apiKeysPage` | cli:read | Selected workspace | Cursor |
+| api | `velocity keys oauth-apps` | `oauthAppsPage` | cli:read | Selected workspace | Cursor |
+| api | `velocity keys user-api-keys` | `userApiKeysPage` | cli:read | Account | Cursor |
 | audit | `velocity audit audit-logs` | `auditLogs` | cli:read | Selected workspace | Audit cursor |
-| automation | `velocity automations list` | `automations` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| automation | `velocity automations list-legacy` | `automations` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | automation | `velocity automations get` | `automation` | cli:read | Selected workspace | Single result / recorded summary |
-| automation | `velocity automations automation-suggestions` | `automationSuggestions` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| backup | `velocity backups list` | `workspaceBackups` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| automation | `velocity automations automation-suggestions-legacy` | `automationSuggestions` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| automation | `velocity automations list` | `automationsPage` | cli:read | Selected workspace | Cursor |
+| automation | `velocity automations automation-suggestions` | `automationSuggestionsPage` | cli:read | Selected workspace | Cursor |
+| backup | `velocity backups list-legacy` | `workspaceBackups` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | backup | `velocity backups get` | `workspaceBackup` | cli:read | Selected workspace | Single result / recorded summary |
 | backup | `velocity backups workspace-backup-download-url` | `workspaceBackupDownloadUrl` | cli:read | Selected workspace | Single result / recorded summary |
+| backup | `velocity backups list` | `workspaceBackupsPage` | cli:read | Selected workspace | Cursor |
 | billing | `velocity billing subscription` | `subscription` | cli:read | Selected workspace | Single result / recorded summary |
 | billing | `velocity billing analytics` | `analytics` | cli:read | Selected workspace | Single result / recorded summary |
 | claude | `velocity agents claude-integration` | `claudeIntegration` | cli:read | Selected workspace | Single result / recorded summary |
 | claude | `velocity agents claude-agent-runs` | `claudeAgentRuns` | cli:read | Selected workspace | Offset |
-| claude | `velocity agents claude-usage` | `claudeUsage` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| claude | `velocity agents claude-credits` | `claudeCredits` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| claude | `velocity agents virtual-members` | `virtualMembers` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| claude | `velocity agents claude-agent-actions` | `claudeAgentActions` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| claude | `velocity agents claude-usage` | `claudeUsage` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
+| claude | `velocity agents claude-credits-legacy` | `claudeCredits` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| claude | `velocity agents virtual-members-legacy` | `virtualMembers` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| claude | `velocity agents claude-agent-actions-legacy` | `claudeAgentActions` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| claude | `velocity agents virtual-members` | `virtualMembersPage` | cli:read | Selected workspace | Cursor |
+| claude | `velocity agents claude-credits` | `claudeCreditsPage` | cli:read | Selected workspace | Cursor |
+| claude | `velocity agents claude-agent-actions` | `claudeAgentActionsPage` | cli:read | Selected workspace | Cursor |
 | codex | `velocity agents codex-integration` | `codexIntegration` | cli:read | Selected workspace | Single result / recorded summary |
 | comment | `velocity comments list` | `comments` | cli:read | Selected workspace | Offset |
+| comment | `velocity comments comment-children` | `commentChildrenPage` | cli:read | Selected workspace | Cursor |
+| comment | `velocity comments comment-reactions` | `commentReactionsPage` | cli:read | Selected workspace | Cursor |
 | cycle | `velocity cycles get` | `cycle` | cli:read | Selected workspace | Single result / recorded summary |
-| cycle | `velocity cycles list` | `cycles` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| cycle | `velocity cycles active-cycles` | `activeCycles` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| cycle | `velocity cycles list-legacy` | `cycles` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| cycle | `velocity cycles active-cycles-legacy` | `activeCycles` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| cycle | `velocity cycles list` | `cyclesPage` | cli:read | Selected workspace | Cursor |
+| cycle | `velocity cycles active-cycles` | `activeCyclesPage` | cli:read | Selected workspace | Cursor |
+| cycle | `velocity cycles cycle-snapshots` | `cycleSnapshotsPage` | cli:read | Selected workspace | Cursor |
 | document | `velocity documents get` | `document` | cli:read | Selected workspace | Single result / recorded summary |
-| document | `velocity documents list` | `documents` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| feature-flag | `velocity features feature-flags` | `featureFlags` | cli:read | Account | Server-limited array; ENGIN-461 |
-| feedback | `velocity feedback my-feedback` | `myFeedback` | cli:read | Account | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations list` | `integrations` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| document | `velocity documents list-legacy` | `documents` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| document | `velocity documents list` | `documentsPage` | cli:read | Selected workspace | Cursor |
+| document | `velocity documents document-children` | `documentChildrenPage` | cli:read | Selected workspace | Cursor |
+| feature-flag | `velocity features feature-flags-legacy` | `featureFlags` | cli:read | Account | Legacy array; prefer paged command |
+| feature-flag | `velocity features feature-flags` | `featureFlagsPage` | cli:read | Account | Cursor |
+| feedback | `velocity feedback my-feedback-legacy` | `myFeedback` | cli:read | Account | Legacy array; prefer paged command |
+| feedback | `velocity feedback my-feedback` | `myFeedbackPage` | cli:read | Account | Cursor |
+| integration | `velocity integrations list-legacy` | `integrations` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | integration | `velocity integrations get` | `integration` | cli:read | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations integration-by-provider` | `integrationByProvider` | cli:read | Selected workspace | Single result / recorded summary |
-| integration | `velocity integrations integration-events` | `integrationEvents` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations fetch-git-hub-issues` | `fetchGitHubIssues` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations fetch-git-hub-orgs` | `fetchGitHubOrgs` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations fetch-git-hub-repos` | `fetchGitHubRepos` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations fetch-twitter-mentions` | `fetchTwitterMentions` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| integration | `velocity integrations integration-events-legacy` | `integrationEvents` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| integration | `velocity integrations fetch-git-hub-issues` | `fetchGitHubIssues` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
+| integration | `velocity integrations fetch-git-hub-orgs` | `fetchGitHubOrgs` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
+| integration | `velocity integrations fetch-git-hub-repos` | `fetchGitHubRepos` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
+| integration | `velocity integrations fetch-twitter-mentions` | `fetchTwitterMentions` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
 | integration | `velocity integrations verify-sentry-connection` | `verifySentryConnection` | cli:read | Selected workspace | Single result / recorded summary |
-| integration | `velocity integrations fetch-sentry-projects` | `fetchSentryProjects` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations webhooks` | `webhooks` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| integration | `velocity integrations fetch-sentry-projects` | `fetchSentryProjects` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
+| integration | `velocity integrations webhooks-legacy` | `webhooks` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | integration | `velocity integrations webhook` | `webhook` | cli:read | Selected workspace | Single result / recorded summary |
-| integration | `velocity integrations webhook-deliveries` | `webhookDeliveries` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| integration | `velocity integrations issue-references` | `issueReferences` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| integration | `velocity integrations webhook-deliveries-legacy` | `webhookDeliveries` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| integration | `velocity integrations issue-references-legacy` | `issueReferences` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| integration | `velocity integrations list` | `integrationsPage` | cli:read | Selected workspace | Cursor |
+| integration | `velocity integrations webhooks` | `webhooksPage` | cli:read | Selected workspace | Cursor |
+| integration | `velocity integrations webhook-deliveries` | `webhookDeliveriesPage` | cli:read | Selected workspace | Cursor |
+| integration | `velocity integrations integration-events` | `integrationEventsPage` | cli:read | Selected workspace | Cursor |
+| integration | `velocity integrations issue-references` | `issueReferencesPage` | cli:read | Selected workspace | Cursor |
 | issue | `velocity issues list` | `issues` | cli:read | Selected workspace | Cursor |
 | issue | `velocity issues get` | `issue` | cli:read | Selected workspace | Single result / recorded summary |
-| label | `velocity labels list` | `labels` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| mcp | `velocity mcp mcp-oauth-grants` | `mcpOAuthGrants` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| mcp | `velocity mcp mcp-connections` | `mcpConnections` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| issue | `velocity issues issue-labels` | `issueLabelsPage` | cli:read | Selected workspace | Cursor |
+| issue | `velocity issues issue-subscribers` | `issueSubscribersPage` | cli:read | Selected workspace | Cursor |
+| issue | `velocity issues issue-activities` | `issueActivitiesPage` | cli:read | Selected workspace | Cursor |
+| issue | `velocity issues issue-comments` | `issueCommentsPage` | cli:read | Selected workspace | Cursor |
+| issue | `velocity issues issue-relations` | `issueRelationsPage` | cli:read | Selected workspace | Cursor |
+| label | `velocity labels list-legacy` | `labels` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| label | `velocity labels list` | `labelsPage` | cli:read | Selected workspace | Cursor |
+| mcp | `velocity mcp mcp-oauth-grants-legacy` | `mcpOAuthGrants` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| mcp | `velocity mcp mcp-oauth-grants` | `mcpOAuthGrantsPage` | cli:read | Selected workspace | Cursor |
+| mcp | `velocity mcp mcp-connections-legacy` | `mcpConnections` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | mcp | `velocity mcp mcp-connection` | `mcpConnection` | cli:read | Selected workspace | Single result / recorded summary |
 | mcp | `velocity mcp mcp-usage` | `mcpUsage` | cli:read | Selected workspace | Single result / recorded summary |
 | mcp | `velocity mcp mcp-workspace-usage` | `mcpWorkspaceUsage` | cli:read | Selected workspace | Single result / recorded summary |
+| mcp | `velocity mcp mcp-connections` | `mcpConnectionsPage` | cli:read | Selected workspace | Cursor |
 | notification | `velocity notifications list` | `notifications` | cli:read | Selected workspace | Offset |
 | notification | `velocity notifications unread-notification-count` | `unreadNotificationCount` | cli:read | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds get` | `prd` | cli:read | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds prd-by-identifier` | `prdByIdentifier` | cli:read | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds list` | `prds` | cli:read | Selected workspace | Offset |
+| prd | `velocity prds prd-requirements` | `prdRequirementsPage` | cli:read | Selected workspace | Cursor |
+| prd | `velocity prds prd-versions` | `prdVersionsPage` | cli:read | Selected workspace | Cursor |
+| prd | `velocity prds prd-projects` | `prdProjectsPage` | cli:read | Selected workspace | Cursor |
+| prd | `velocity prds prd-teams` | `prdTeamsPage` | cli:read | Selected workspace | Cursor |
+| prd | `velocity prds prd-stories` | `prdStoriesPage` | cli:read | Selected workspace | Cursor |
 | project | `velocity projects get` | `project` | cli:read | Selected workspace | Single result / recorded summary |
-| project | `velocity projects list` | `projects` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| project | `velocity projects list-legacy` | `projects` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| project | `velocity projects list` | `projectsPage` | cli:read | Selected workspace | Cursor |
+| project | `velocity projects project-milestones` | `projectMilestonesPage` | cli:read | Selected workspace | Cursor |
 | referral | `velocity referrals my-referral-code` | `myReferralCode` | cli:read | Account | Single result / recorded summary |
 | referral | `velocity referrals referral-stats` | `referralStats` | cli:read | Account | Single result / recorded summary |
 | referral | `velocity referrals referral-signups` | `referralSignups` | cli:read | Account | Offset |
 | referral | `velocity referrals referral-credits` | `referralCredits` | cli:read | Account | Offset |
-| roadmap | `velocity feedback-roadmap feature-versions` | `featureVersions` | cli:read | Account | Server-limited array; ENGIN-461 |
-| roadmap | `velocity feedback-roadmap feature-requests` | `featureRequests` | cli:read | Account | Server-limited array; ENGIN-461 |
+| roadmap | `velocity feedback-roadmap feature-versions-legacy` | `featureVersions` | cli:read | Account | Legacy array; prefer paged command |
+| roadmap | `velocity feedback-roadmap feature-requests-legacy` | `featureRequests` | cli:read | Account | Legacy array; prefer paged command |
 | roadmap | `velocity feedback-roadmap feature-request` | `featureRequest` | cli:read | Account | Single result / recorded summary |
-| roadmap | `velocity feedback-roadmap feature-leaderboard` | `featureLeaderboard` | cli:read | Account | Server-limited array; ENGIN-461 |
+| roadmap | `velocity feedback-roadmap feature-leaderboard` | `featureLeaderboard` | cli:read | Account | Provider / summary / window array; inspect API policy |
+| roadmap | `velocity feedback-roadmap feature-versions` | `featureVersionsPage` | cli:read | Account | Cursor |
+| roadmap | `velocity feedback-roadmap feature-requests` | `featureRequestsPage` | cli:read | Account | Cursor |
+| roadmap | `velocity feedback-roadmap feature-version-features` | `featureVersionFeaturesPage` | cli:read | Selected workspace | Cursor |
 | search | `velocity search hybrid-search` | `hybridSearch` | cli:read | Selected workspace | Single result / recorded summary |
-| session | `velocity sessions active-sessions` | `activeSessions` | cli:read | Account | Server-limited array; ENGIN-461 |
-| session | `velocity sessions login-history` | `loginHistory` | cli:read | Account | Server-limited array; ENGIN-461 |
+| session | `velocity sessions active-sessions-legacy` | `activeSessions` | cli:read | Account | Legacy array; prefer paged command |
+| session | `velocity sessions login-history-legacy` | `loginHistory` | cli:read | Account | Legacy array; prefer paged command |
+| session | `velocity sessions active-sessions` | `activeSessionsPage` | cli:read | Account | Cursor |
+| session | `velocity sessions login-history` | `loginHistoryPage` | cli:read | Account | Cursor |
 | sso | `velocity sso sso-configuration` | `ssoConfiguration` | cli:read | Selected workspace | Single result / recorded summary |
-| status | `velocity statuses list` | `statuses` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| status | `velocity statuses list-legacy` | `statuses` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| status | `velocity statuses list` | `statusesPage` | cli:read | Selected workspace | Cursor |
 | team | `velocity teams get` | `team` | cli:read | Selected workspace | Single result / recorded summary |
-| team | `velocity teams list` | `teams` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| uptime | `velocity uptime list` | `uptimeMonitors` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| team | `velocity teams list-legacy` | `teams` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| team | `velocity teams list` | `teamsPage` | cli:read | Selected workspace | Cursor |
+| team | `velocity teams team-members` | `teamMembersPage` | cli:read | Selected workspace | Cursor |
+| uptime | `velocity uptime list-legacy` | `uptimeMonitors` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | uptime | `velocity uptime get` | `uptimeMonitor` | cli:read | Selected workspace | Single result / recorded summary |
+| uptime | `velocity uptime list` | `uptimeMonitorsPage` | cli:read | Selected workspace | Cursor |
+| uptime | `velocity uptime uptime-results` | `uptimeResultsPage` | cli:read | Selected workspace | Cursor |
 | user-story | `velocity stories get` | `userStory` | cli:read | Selected workspace | Single result / recorded summary |
 | user-story | `velocity stories user-story-by-identifier` | `userStoryByIdentifier` | cli:read | Selected workspace | Single result / recorded summary |
 | user-story | `velocity stories list` | `userStories` | cli:read | Selected workspace | Offset |
+| user-story | `velocity stories story-children` | `storyChildrenPage` | cli:read | Selected workspace | Cursor |
+| user-story | `velocity stories story-issues` | `storyIssuesPage` | cli:read | Selected workspace | Cursor |
+| user-story | `velocity stories story-requirements` | `storyRequirementsPage` | cli:read | Selected workspace | Cursor |
+| user-story | `velocity stories requirement-stories` | `requirementStoriesPage` | cli:read | Selected workspace | Cursor |
 | user | `velocity account get` | `me` | cli:read | Account | Single result / recorded summary |
 | user | `velocity account user` | `user` | cli:read | Account | Single result / recorded summary |
 | view | `velocity views get` | `view` | cli:read | Selected workspace | Single result / recorded summary |
-| view | `velocity views list` | `views` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
-| workspace-domain | `velocity domains list` | `workspaceDomains` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| view | `velocity views list-legacy` | `views` | cli:read | Selected workspace | Legacy array; prefer paged command |
+| view | `velocity views list` | `viewsPage` | cli:read | Selected workspace | Cursor |
+| workspace-domain | `velocity domains list-legacy` | `workspaceDomains` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | workspace-domain | `velocity domains get` | `workspaceDomain` | cli:read | Selected workspace | Single result / recorded summary |
-| workspace-roadmap | `velocity roadmap list` | `roadmapItems` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| workspace-domain | `velocity domains list` | `workspaceDomainsPage` | cli:read | Selected workspace | Cursor |
+| workspace-roadmap | `velocity roadmap list-legacy` | `roadmapItems` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | workspace-roadmap | `velocity roadmap get` | `roadmapItem` | cli:read | Selected workspace | Single result / recorded summary |
-| workspace-roadmap | `velocity roadmap roadmap-versions` | `roadmapVersions` | cli:read | Selected workspace | Server-limited array; ENGIN-461 |
+| workspace-roadmap | `velocity roadmap roadmap-versions-legacy` | `roadmapVersions` | cli:read | Selected workspace | Legacy array; prefer paged command |
 | workspace-roadmap | `velocity roadmap roadmap-version` | `roadmapVersion` | cli:read | Selected workspace | Single result / recorded summary |
 | workspace-roadmap | `velocity roadmap roadmap-settings` | `roadmapSettings` | cli:read | Selected workspace | Single result / recorded summary |
+| workspace-roadmap | `velocity roadmap list` | `roadmapItemsPage` | cli:read | Selected workspace | Cursor |
+| workspace-roadmap | `velocity roadmap roadmap-versions` | `roadmapVersionsPage` | cli:read | Selected workspace | Cursor |
+| workspace-roadmap | `velocity roadmap roadmap-version-items` | `roadmapVersionItemsPage` | cli:read | Selected workspace | Cursor |
 | workspace | `velocity workspaces get` | `workspace` | cli:read | Selected workspace | Single result / recorded summary |
-| workspace | `velocity workspaces list` | `workspaces` | cli:read | Account | Server-limited array; ENGIN-461 |
+| workspace | `velocity workspaces list-legacy` | `workspaces` | cli:read | Account | Legacy array; prefer paged command |
 | workspace | `velocity workspaces invitation-by-token` | `invitationByToken` | cli:read | Account | Single result / recorded summary |
-| workspace | `velocity workspaces workspace-leaderboard` | `workspaceLeaderboard` | cli:read | Account | Server-limited array; ENGIN-461 |
+| workspace | `velocity workspaces workspace-leaderboard` | `workspaceLeaderboard` | cli:read | Account | Provider / summary / window array; inspect API policy |
+| workspace | `velocity workspaces list` | `workspacesPage` | cli:read | Account | Cursor |
+| workspace | `velocity workspaces workspace-members` | `workspaceMembersPage` | cli:read | Selected workspace | Cursor |
+| workspace | `velocity workspaces workspace-invitations` | `workspaceInvitationsPage` | cli:read | Selected workspace | Cursor |
 | zapier | `velocity integrations zapier-integration` | `zapierIntegration` | cli:read | Selected workspace | Single result / recorded summary |
 | ai-usage | `velocity ai set-ai-credit-override` | `setAiCreditOverride` | cli:write | Selected workspace | Single result / recorded summary |
 | api | `velocity keys create-api-key` | `createApiKey` | cli:write | Selected workspace | Single result / recorded summary |
@@ -165,6 +225,10 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | integration | `velocity integrations delete-webhook` | `deleteWebhook` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations test-webhook` | `testWebhook` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations retry-webhook-delivery` | `retryWebhookDelivery` | cli:write | Selected workspace | Single result / recorded summary |
+| issue | `velocity issues create-issue-relation` | `createIssueRelation` | cli:write | Selected workspace | Single result / recorded summary |
+| issue | `velocity issues remove-issue-relation` | `removeIssueRelation` | cli:write | Selected workspace | Single result / recorded summary |
+| issue | `velocity issues subscribe-issue` | `subscribeIssue` | cli:write | Selected workspace | Single result / recorded summary |
+| issue | `velocity issues unsubscribe-issue` | `unsubscribeIssue` | cli:write | Selected workspace | Single result / recorded summary |
 | issue | `velocity issues create` | `createIssue` | cli:write | Selected workspace | Single result / recorded summary |
 | issue | `velocity issues update` | `updateIssue` | cli:write | Selected workspace | Single result / recorded summary |
 | issue | `velocity issues delete` | `deleteIssue` | cli:write | Selected workspace | Single result / recorded summary |
@@ -191,6 +255,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | prd | `velocity prds update-prd-requirement` | `updatePrdRequirement` | cli:write | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds delete-prd-requirement` | `deletePrdRequirement` | cli:write | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds reorder-prd-requirements` | `reorderPrdRequirements` | cli:write | Selected workspace | Single result / recorded summary |
+| project | `velocity projects set-project-showcase` | `setProjectShowcase` | cli:write | Selected workspace | Single result / recorded summary |
 | project | `velocity projects create` | `createProject` | cli:write | Selected workspace | Single result / recorded summary |
 | project | `velocity projects update` | `updateProject` | cli:write | Selected workspace | Single result / recorded summary |
 | project | `velocity projects delete` | `deleteProject` | cli:write | Selected workspace | Single result / recorded summary |
@@ -254,10 +319,12 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | workspace-roadmap | `velocity roadmap update-roadmap-settings` | `updateRoadmapSettings` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces create` | `createWorkspace` | cli:write | Account | Single result / recorded summary |
 | workspace | `velocity workspaces update` | `updateWorkspace` | cli:write | Selected workspace | Single result / recorded summary |
+| workspace | `velocity workspaces patch-workspace-social-settings` | `patchWorkspaceSocialSettings` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces delete` | `deleteWorkspace` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces invite-member` | `inviteMember` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces update-member-role` | `updateMemberRole` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces remove-member` | `removeMember` | cli:write | Selected workspace | Single result / recorded summary |
+| workspace | `velocity workspaces leave` | `leaveWorkspace` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces revoke-invitation` | `revokeInvitation` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces resend-invitation` | `resendInvitation` | cli:write | Selected workspace | Single result / recorded summary |
 | workspace | `velocity workspaces accept-invitation` | `acceptInvitation` | cli:write | Account | Single result / recorded summary |
@@ -291,6 +358,8 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/ai/triage-config` | velocity ai update-triage-config | Platform authorization, entitlements, budget and metering; workspace filled from selected context. |
 | `/api/ai/triage` | velocity ai triage | Platform authorization, entitlements, budget and metering; workspace filled from selected context. |
 | `/api/ai/workspace-ai-config` | velocity ai update-workspace-ai-config | Platform authorization, entitlements, budget and metering; workspace filled from selected context. |
+| `/api/attachments/[workspaceId]/[attachmentId]` | velocity attachments upload/list/download/remove | Private scoped issue storage, live consent and membership checks; 4 MiB per file and 50 per issue. Binary stdin/stdout, explicit retry IDs and version-checked inline image removal. |
+| `/api/attachments` | velocity attachments upload/list/download/remove | Private scoped issue storage, live consent and membership checks; 4 MiB per file and 50 per issue. Binary stdin/stdout, explicit retry IDs and version-checked inline image removal. |
 | `/api/auth/bitbucket/callback` | velocity open security; velocity open integrations --provider PROVIDER | Provider OAuth/SSO browser verification and callbacks; configuration uses schema commands. |
 | `/api/auth/bitbucket` | velocity open security; velocity open integrations --provider PROVIDER | Provider OAuth/SSO browser verification and callbacks; configuration uses schema commands. |
 | `/api/auth/callback` | velocity open security; velocity open integrations --provider PROVIDER | Provider OAuth/SSO browser verification and callbacks; configuration uses schema commands. |
@@ -316,6 +385,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/cli/identity` | velocity whoami; velocity diagnostics | Live identity and protocol compatibility. |
 | `/api/cli/meta` | velocity whoami; velocity diagnostics | Live identity and protocol compatibility. |
 | `/api/contact` | Public web/marketing surfaces; roadmap/referrals commands for authenticated management | Public visitor or operational endpoint; not an additional authenticated account/workspace action. |
+| `/api/cron/attachment-cleanup` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/audit-log-retention` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/automation-suggestions` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/backup` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
@@ -330,15 +400,15 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/cron/webhook-retry` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/workspace-events-retention` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/workspace-health-digest` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
-| `/api/export` | velocity api rest --path /api/export | Normal platform REST authorization. Export arrays remain server-limited (ENGIN-461); ordinary GraphQL bulk/content commands offer typed alternatives. |
+| `/api/export` | velocity api rest --path /api/export --input JSON | Complete matching CSV/JSON downloads in immutable ID order, bounded at 32 MiB; audit exports refuse more than 5,000 rows. Narrow creation-date/actor/action filters for larger results. Shared REST authentication enforces membership, scopes and consent. |
 | `/api/graphql` | All schema commands; velocity api graphql | Public authenticated platform contract. |
 | `/api/health` | Public web/marketing surfaces; roadmap/referrals commands for authenticated management | Public visitor or operational endpoint; not an additional authenticated account/workspace action. |
-| `/api/import` | velocity api rest --path /api/import | Normal platform REST authorization. Export arrays remain server-limited (ENGIN-461); ordinary GraphQL bulk/content commands offer typed alternatives. |
-| `/api/integrations/jira/import` | velocity api rest --path /api/integrations/jira/import | Normal platform REST authorization. Export arrays remain server-limited (ENGIN-461); ordinary GraphQL bulk/content commands offer typed alternatives. |
-| `/api/integrations/jira/preview` | velocity api rest --path /api/integrations/jira/preview | Normal platform REST authorization. Export arrays remain server-limited (ENGIN-461); ordinary GraphQL bulk/content commands offer typed alternatives. |
-| `/api/integrations/linear/files/[workspaceId]/[issueId]/[assetId]` | velocity open page --path issues | Session-only private imported-attachment download; general upload API tracked in ENGIN-439. |
-| `/api/integrations/linear/import` | velocity api rest --path /api/integrations/linear/import | Normal platform REST authorization. Export arrays remain server-limited (ENGIN-461); ordinary GraphQL bulk/content commands offer typed alternatives. |
-| `/api/integrations/linear/preview` | velocity api rest --path /api/integrations/linear/preview | Normal platform REST authorization. Export arrays remain server-limited (ENGIN-461); ordinary GraphQL bulk/content commands offer typed alternatives. |
+| `/api/import` | velocity api rest --path /api/import --method POST --input JSON | Scoped issue creation with team selection, validated references and normal events. Maximum 100 rows / 1 MiB. Per-row created IDs, failures and warnings are preserved; incomplete results exit 8. Retry only failed rows after correction. |
+| `/api/integrations/jira/import` | velocity api rest --path /api/integrations/jira/import | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
+| `/api/integrations/jira/preview` | velocity api rest --path /api/integrations/jira/preview | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
+| `/api/integrations/linear/files/[workspaceId]/[issueId]/[assetId]` | velocity open page --path issues | Session-only private imported-attachment download. Direct issue files use the separate native attachments commands. |
+| `/api/integrations/linear/import` | velocity api rest --path /api/integrations/linear/import | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
+| `/api/integrations/linear/preview` | velocity api rest --path /api/integrations/linear/preview | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
 | `/api/integrations/pagerduty` | velocity open integrations --provider pagerduty | This provider control API requires a browser session; existing GraphQL integration configuration/inspection is available. |
 | `/api/invite/[token]` | velocity workspaces accept-invitation --token TOKEN | Public invite landing handoff; authenticated acceptance is available. |
 | `/api/make/actions/create-comment` | Schema management commands; integrations/zapier configuration | Third-party automation protocol wrappers and inbound triggers, not an additional human management surface. |
@@ -534,12 +604,8 @@ These exact tools are available through `velocity api mcp TOOL --args @payload.j
 
 ## Explicit API gaps
 
-- **ENGIN-439 — Local issue attachments:** No general upload/list/download/delete API.
-- **ENGIN-461 — Unpaginated arrays:** Plain-array APIs cannot prove full results beyond the server cap; CLI includes a limitation in context.
 - **ENGIN-462 — Account lifecycle and notification delivery preferences:** No account deletion/full data export/email mutation; notification settings Save is currently a placeholder. Arbitrary stored JSON does not activate delivery policies.
-- **ENGIN-463 — Self-service workspace leave:** Admin workspace membership/invitation/role and team membership CRUD APIs exist; self-service workspace leave does not.
-- **ENGIN-464 — Issue dependency relations and subscriptions:** Readable via field selection; no create/remove public mutations.
 
 ## Additional workflows
 
-Both binaries support multi-account PKCE, refresh/logout, per-account workspace defaults, typed JSON/stdin/file arguments, ordered partial-result bulk operations, saved-view filters, atomic preference patches/reset, rich-text JSON and loss-aware Markdown, version-checked body import/export, notification polling, diagnostics and completions. Local image attachments remain ENGIN-439. MFA/provider authorization uses exact browser handoffs. No ordinary management command requires an LLM credential or service role.
+Both binaries support multi-account PKCE, refresh/logout, per-account workspace defaults, typed JSON/stdin/file arguments, ordered partial-result bulk operations, saved-view filters, atomic preference patches/reset, rich-text JSON and loss-aware Markdown, version-checked body import/export, notification polling, diagnostics and completions. Private images/files use attachments upload/list/download/remove; images in descriptions are removed through a version-checked ordinary issue edit. MFA/provider authorization uses exact browser handoffs. No ordinary management command requires an LLM credential or service role.

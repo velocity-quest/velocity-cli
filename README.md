@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI releases](https://github.com/velocity-quest/velocity-cli/releases),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.1.2.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.1.2`.
+[Velocity CLI 0.2.5](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.5),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.5.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.5`.
 
 ```sh
 velocity --version
@@ -108,11 +108,35 @@ creation requires `--show-secrets`; save its output privately. Password/token an
 stored secret fields remain redacted. Successful creates are never automatically
 retried. Reads retry only bounded transient HTTP failures.
 
-Supported pagination follows issue cursors, audit cursors, and offset pages for
-PRDs, stories, comments, notifications, AI logs, runs and referrals. `--no-all`
-returns one page. `--max-pages` fails clearly if a complete result exceeds the
-bound. Arrays lacking a pagination API include an explicit ENGIN-461 limitation
-in the output context; they are not advertised as complete exports.
+Version 0.2.0 uses typed cursor connections for database collections, including
+projects, teams, statuses, labels, cycles, documents, views, integrations,
+automations, members and nested histories. List results contain `edges`,
+`pageInfo` and `totalCount`; extract records with `data.edges[].node` in JSON
+scripts. Legacy array commands remain available with `-legacy` suffixes.
+Existing issue/audit cursors and offset APIs remain supported. `--select`
+automatically includes required traversal metadata. `--no-all` returns one
+page; `--max-pages` fails if traversal exceeds its bound. New collection pages
+accept `first`/`after`, cap at 100, and use immutable ID/primary-key order rather
+than display order. Counts describe the full filtered collection before the
+cursor. Each page checks current access; cursors cannot move between accounts,
+filters, workspace grants or focus. Edits do not move rows solely by changing
+their name, dates or display order. These live reads are not a transaction
+snapshot of inserts, deletes or changing filter membership; changing access
+requires a fresh traversal. Legacy, provider and summary arrays report their
+limitations. REST workspace downloads still have a completeness gap (ENGIN-484).
+
+```sh
+vel projects list --select '{ edges { node { id name } } }' --json
+vel workspaces workspace-members --json
+vel issues issue-activities --issue-id ENGIN-123 --json
+vel prds prd-requirements --prd-id PRD_UUID --json
+vel documents list --pagination '{"first":25}' --no-all --json
+```
+
+Nested `*Page` fields can be selected explicitly; the CLI automatically walks
+the root collection only. Use the corresponding root command to traverse a
+specific nested collection completely. Old browser array fields keep their
+original display order and shapes.
 
 JSON output is `{context,data}` with the selected identity, account, origin and
 workspace. Errors are sanitized JSON on stderr with `--json`. Exit codes: 0
@@ -154,6 +178,21 @@ deduplicates IDs during a run, and retries bounded outages. `--after` inclusivel
 replays a timestamp so consumers can deduplicate IDs on restart; this is polling,
 not a guarantee about live progress or transaction commit order.
 
+## Issue CSV/JSON import
+
+```bash
+vel --workspace velocity-project api rest --path /api/import --method POST --input @import.json
+```
+
+`import.json` contains `{"teamId":"ENGIN","issues":[{"title":"New issue","priority":1}]}`.
+Rows can override the default team with `teamId`; a multi-team workspace requires
+an explicit choice. Priorities are 0 urgent through 4 none, or their names.
+The server validates workspace/team references and returns each created ID.
+Each request supports at most 100 rows and 1 MiB. Incomplete outcomes exit 8
+with row results in the error details. Review and correct only rows marked
+`error` before retrying; rows marked `created`, `created_with_warnings` or
+`unknown` must not be replayed. Mutations are never automatically retried.
+
 ## Issue links and subscriptions
 
 ```bash
@@ -191,10 +230,67 @@ are updated with every schema/API/product change. Output envelopes and exit code
 are regression-tested. `vel completions bash|zsh|fish` generates completion for
 both binary names.
 
-Tracked API gaps: ENGIN-439 (local issue attachments), ENGIN-461 (uncursored
-collections), ENGIN-462 (account deletion/export/email and functional notification
+Tracked API gaps: ENGIN-462 (account deletion/export/email and functional notification
 preferences). See the matrix for exact available commands and
 capability/browser handoffs. Supported platform operations are implemented; these
 missing platform APIs are recorded rather than hidden behind direct database access.
 
 Maintainers relay a successful main **Management CLI** workflow with `node packages/cli/scripts/release-from-ci.mjs RUN_ID` from its exact commit. Only that checksummed CI artifact is staged in an immutable public candidate branch. Public CI repeats clean installation on all supported platforms before publishing; no local archive is released. The public distribution workflow template lives in `packages/cli/distribution` in the product repository.
+
+### Private issue attachments
+
+```sh
+velocity attachments upload ENGIN-123 --file ./screenshot.png
+vel attachments list ENGIN-123
+vel attachments download <attachment-uuid> --output ./downloaded.png
+vel attachments remove <attachment-uuid> --issue ENGIN-123
+cat ./capture.bin | vel attachments upload ENGIN-123 --file - --name capture.bin
+vel attachments download <attachment-uuid> --output - > ./capture.bin
+```
+
+Choose an authorized workspace with `--workspace` and an account with `--account`.
+Attachments are private: every preview/download checks current authorization.
+The platform accepts files up to **4 MiB**, with **50 attachments per issue**;
+inline images support PNG, JPEG and WebP with verified file signatures. Other
+files download as binary. The browser's issue editor supports clipboard images
+and an **Attach image** picker, ordered placeholders and retry/removal. New issue
+creation offers **Add description / images**. Unfinished uploads block saving.
+Cancelled drafts expire after 24 hours and deleted references queue file cleanup.
+
+Upload failures include `uploadId`; explicitly repeat the same file with
+`--upload-id <uuid>` to recover a lost response without duplication. No upload
+or removal is automatically retried. Inline image removal updates the description
+with its current version; conflicts preserve the server description. Downloads
+never overwrite an existing output file. Raw binary stdout cannot use `--json`.
+
+### Social & Public settings
+
+CLI 0.2.5 supports admin/owner patches that preserve other workspace settings.
+
+```bash
+vel --workspace my-workspace workspaces patch-workspace-social-settings --workspace-id WORKSPACE_UUID --settings '{"public_website":"https://example.com"}' --select '{ id settings }'
+vel --workspace my-workspace workspaces patch-workspace-social-settings --workspace-id WORKSPACE_UUID --settings '{"public_website":""}' --select '{ id settings }'
+```
+
+Website links accept HTTP/HTTPS without credentials. Saving a website does not
+enable a public profile. It appears on the public profile and public roadmap
+only when Public Profile is enabled.
+
+### Public project showcases
+
+CLI 0.2.5 adds admin/owner commands to review and list specific projects.
+Names and descriptions here are
+separate from private planning fields; no private description is copied.
+
+```bash
+vel --workspace my-workspace projects set-project-showcase --workspace-id WORKSPACE_UUID --project-id PROJECT_UUID --enabled true --name 'Public project name' --description 'Reviewed public description' --website https://example.com --github-repositories '["org/repo"]'
+vel --workspace my-workspace projects set-project-showcase --workspace-id WORKSPACE_UUID --project-id PROJECT_UUID --enabled false --name 'Public project name' --description '' --website '' --github-repositories '[]'
+vel --workspace my-workspace projects list --workspace-id WORKSPACE_UUID --select '{ edges { node { id name publicShowcase { id enabled name description website githubRepositories } } } }'
+```
+
+Paginated reads follow every page by default; use --no-all for one page.
+Projects remain private by default. Public profiles show only explicitly listed
+projects while the workspace profile is enabled. Websites must be full HTTP/HTTPS
+URLs without credentials. Supply up to 10 GitHub org/repo paths; optional links
+and descriptions can be cleared. Unpublishing retains reviewed metadata for
+future use; deleting a project also deletes its showcase.
