@@ -108,7 +108,7 @@ creation requires `--show-secrets`; save its output privately. Password/token an
 stored secret fields remain redacted. Successful creates are never automatically
 retried. Reads retry only bounded transient HTTP failures.
 
-Version 0.2.0 uses typed cursor connections for database collections, including
+List commands use typed cursor connections for database collections, including
 projects, teams, statuses, labels, cycles, documents, views, integrations,
 automations, members and nested histories. List results contain `edges`,
 `pageInfo` and `totalCount`; extract records with `data.edges[].node` in JSON
@@ -123,7 +123,10 @@ filters, workspace grants or focus. Edits do not move rows solely by changing
 their name, dates or display order. These live reads are not a transaction
 snapshot of inserts, deletes or changing filter membership; changing access
 requires a fresh traversal. Legacy, provider and summary arrays report their
-limitations. REST workspace downloads still have a completeness gap (ENGIN-484).
+limitations. REST workspace issue/project exports traverse all matching records
+in immutable ID order, bounded at 32 MiB. Audit downloads refuse more than 5,000
+rows with an actionable filtering message. Use JSON format for structured REST
+output; CSV downloads remain CSV.
 
 ```sh
 vel projects list --select '{ edges { node { id name } } }' --json
@@ -279,8 +282,7 @@ only when Public Profile is enabled.
 ### Public project showcases
 
 CLI 0.2.5 adds admin/owner commands to review and list specific projects.
-Names and descriptions here are
-separate from private planning fields; no private description is copied.
+Names and descriptions here are separate from private planning fields; no private description is copied.
 
 ```bash
 vel --workspace my-workspace projects set-project-showcase --workspace-id WORKSPACE_UUID --project-id PROJECT_UUID --enabled true --name 'Public project name' --description 'Reviewed public description' --website https://example.com --github-repositories '["org/repo"]'
