@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.5](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.5),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.5.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.5`.
+[Velocity CLI 0.2.6](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.6),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.6.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.6`.
 
 ```sh
 velocity --version
@@ -67,6 +67,11 @@ vel logout --all
 Logout revokes that profile's durable grant and removes its local credentials.
 Management profiles do not change agent sign-ins. Rename retains the same secret
 slot. Refresh, logout and profile changes serialize across processes.
+
+Concurrent commands wait when a lock is held and retry if its owner releases it.
+A genuinely abandoned credential lock is never removed automatically. If the
+command reports one, close other Velocity commands before removing the exact
+lock path shown in the error, then retry.
 
 Default storage uses macOS Keychain, Windows Credential Vault, or Linux Secret
 Service (`secret-tool`) when installed. Unlock the store if access fails. On

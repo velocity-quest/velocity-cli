@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.6
+
+Concurrent commands retry when a credential-lock owner releases or replaces its
+lock during the PID check, rather than incorrectly reporting an abandoned lock.
+Genuinely abandoned locks still require explicit recovery and are never removed
+automatically. Refresh-token rotation and account/origin isolation remain serialized.
+
 ## 0.2.5
 
 Add admin/owner `projects set-project-showcase` for separately reviewed public
