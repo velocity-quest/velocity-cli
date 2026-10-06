@@ -1,6 +1,6 @@
 # Velocity CLI feature coverage
 
-Version 0.2.5 · protocol 1 · schema `22fb4540d32f7cd72e50dfbf3175bc8206dc58f2e094561256f42e25974a2419`
+Version 0.2.6 · protocol 1 · schema `ffb5ddd1a09cc9ab38e22219390b3faba58005d84b811fcdd6c2d2ab32c6a362`
 
 Generated from all schema modules, REST routes, MCP tool definitions and authenticated product pages. CI rejects stale coverage and unclassified REST routes. Every GraphQL root operation has a typed command; `--select` exposes optional nested histories, relations, team members and PRD versions. Server roles, scopes, plans and feature gates remain authoritative.
 
