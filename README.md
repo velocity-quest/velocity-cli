@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.6](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.6),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.6.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.6`.
+[Velocity CLI 0.2.22](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.22),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.22.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.22`.
 
 ```sh
 velocity --version
@@ -43,6 +43,11 @@ changed. Workspace deletion has its existing separate owner-only command.
 SSH/headless: `velocity login --account work --no-browser` prints an issuer-hosted
 link and reads the paste code privately. Login URLs/prompts use stderr; JSON
 results use stdout. No password, browser cookie or service-role key is stored.
+
+Open the revisitable workspace setup guide with `vel open page --path getting-started`.
+Use `--no-browser` to print its exact selected-workspace URL. Teams, statuses,
+projects, issues and documents also have native management commands. Opening
+the guide creates no entities or implicit agent authorization.
 
 ## Accounts and credentials
 
@@ -79,6 +84,11 @@ headless Linux, explicitly use `--credential-store file`: credentials are stored
 in atomic mode-0600 files in a mode-0700 directory. Windows requires its native
 vault. Metadata lives in `${XDG_CONFIG_HOME:-~/.config}/velocity/cli.json` on POSIX and `%APPDATA%/velocity/cli.json` on Windows (XDG_CONFIG_HOME overrides either).
 
+Windows allows up to 30 seconds for PowerShell startup and input decoding, then
+15 seconds for the vault operation. A timeout names the stalled phase and fails
+explicitly; it never switches storage or retries a write. Ctrl-C cancels the
+credential helper promptly. Linux and macOS retain a 15-second helper deadline.
+
 Automation may set `VELOCITY_TOKEN` (or `VELOCITY_API_KEY`) or use `--token-file`
 with a private regular file. Explicit `--account` ignores environment tokens.
 An explicit token is never saved or refreshed. Workspace keys stay bound to their
@@ -106,7 +116,7 @@ vel bulk --file operations.json --continue-on-error --json
 vel api graphql --query @query.graphql --variables @variables.json
 ```
 
-Use `--args @file.json`, `--args -` for stdin, or individual typed flags. Nested
+Use `--args @file.json`, `--args -` for stdin, or individual typed flags. Typed input-object commands also accept `--input` as JSON, `@file` or stdin: it replaces the input portion of `--args`, then individual field flags override its values. Nested
 filter/input values use JSON. Plain text remains plain text for string APIs.
 `--select` validates an explicit GraphQL selection. One-time key/client-secret
 creation requires `--show-secrets`; save its output privately. Password/token and
@@ -225,8 +235,39 @@ currently unavailable.
 
 ## Browser flows, compatibility and known gaps
 
-`vel open security` hands MFA/verification to the selected workspace's exact
-security page. `vel open integrations --provider github` hands provider OAuth to
+`vel open change-email` opens the selected account/workspace's Security email
+panel, pinned to that account. It sends no message and changes no address.
+Sign in with that account, complete any MFA challenge, request a new address,
+and explicitly confirm both the current- and new-address links. The current
+email remains unchanged until native verification completes; your existing
+account, memberships and credentials remain. Links can be opened in another
+browser after signing in with the intended account. Opening a link alone does
+not consume it. Expired, replayed and replaced links require new verification.
+SSO-managed addresses remain controlled by their provider. The narrowly scoped
+GET/POST `/api/account/email` requires the exact current browser bearer; CLI
+and other delegated credentials use this interactive handoff.
+
+`vel open delete-account` opens the selected account/workspace's permanent
+deletion panel, pinned to that account. It performs no deletion. Sign in to
+that account in the browser, complete any MFA challenge, resolve sole-owned
+workspaces by transferring ownership or explicitly deleting them, and type
+your current account email to confirm. Download your account data first.
+Deletion atomically removes authentication, sessions, personal keys/OAuth
+access, preferences, Inbox and issue subscriptions. Shared issues, documents,
+comments, attached files and audit history remain with a Deleted user profile;
+written content may retain personal information. Private upload drafts enter
+cleanup. Workspace plans and shared integrations remain. This cannot be undone.
+The own-browser-session API provides GET/POST `/api/account/delete`; delegated
+CLI credentials use this exact browser handoff for interactive confirmation.
+
+`vel open mfa` opens authenticator enrollment, code verification and verified
+removal in the selected workspace's exact Security page. `vel open security`
+also opens password/session controls. MFA setup succeeds only after a code is
+verified; future browser sign-ins, including CLI consent, must then complete a
+challenge. Add another authenticator before losing your first device; Velocity
+does not generate backup codes or offer automated recovery. Existing API keys
+and connected apps retain their separately scoped access until revoked.
+`vel open integrations --provider github` hands provider OAuth to
 its settings page. `vel open billing` uses the hosted billing UI; plan/checkout
 mutations also return their hosted links. Use `--no-browser` to print a handoff.
 These commands do not purchase a plan or bypass owner/admin permissions.
@@ -238,10 +279,7 @@ are updated with every schema/API/product change. Output envelopes and exit code
 are regression-tested. `vel completions bash|zsh|fish` generates completion for
 both binary names.
 
-Tracked API gaps: ENGIN-462 (account deletion/export/email and functional notification
-preferences). See the matrix for exact available commands and
-capability/browser handoffs. Supported platform operations are implemented; these
-missing platform APIs are recorded rather than hidden behind direct database access.
+Account export, verified email changes, authenticator setup and ownership-safe deletion use their supported APIs or exact browser handoffs. Issue email preferences and actual scheduled delivery are available through the commands below. See the matrix for exact data commands and capability/browser handoffs; ordinary management never uses direct database access.
 
 Maintainers relay a successful main **Management CLI** workflow with `node packages/cli/scripts/release-from-ci.mjs RUN_ID` from its exact commit. Only that checksummed CI artifact is staged in an immutable public candidate branch. Public CI repeats clean installation on all supported platforms before publishing; no local archive is released. The public distribution workflow template lives in `packages/cli/distribution` in the product repository.
 
@@ -301,3 +339,56 @@ projects while the workspace profile is enabled. Websites must be full HTTP/HTTP
 URLs without credentials. Supply up to 10 GitHub org/repo paths; optional links
 and descriptions can be cleared. Unpublishing retains reviewed metadata for
 future use; deleting a project also deletes its showcase.
+
+## In-app notification preferences
+
+These controls apply to the selected account across all workspaces; no workspace
+selection is required. Partial updates preserve other options. Defaults enable
+all existing delivery. Reset restores all defaults; existing Inbox entries remain.
+
+```bash
+vel notifications preferences
+vel notifications update-preferences --mention false --issue-assigned false
+vel notifications update-preferences --input '{"enabled":false}'
+vel notifications reset-preferences
+```
+
+Use `--account` to target another configured account explicitly. Scope-denied
+operations exit 4. Connected workspace agents cannot read or change account-wide
+policy. These settings select Inbox activity; invitation/account/feedback emails are separate.
+
+## Opt-in issue emails and digests
+
+```bash
+vel notifications issue-email-preferences
+vel notifications update-issue-email-preferences --input '{"enabled":true,"frequency":"DAILY"}'
+vel notifications update-issue-email-preferences --frequency WEEKLY
+vel notifications reset-issue-email-preferences
+```
+
+Email starts off. It covers only new unread assignments, followed issue updates,
+comments and issue mentions selected by your Inbox categories; there is no
+historical backfill. IMMEDIATE normally runs within a minute; DAILY runs at 9 AM
+and WEEKLY on Monday at 9 AM in your account time zone, falling back to UTC for
+an invalid zone. Unattempted queued work follows time-zone/frequency changes.
+Each email contains up to 50 updates from one workspace; additional batches may
+follow for busy workspaces. Delivery may be delayed by provider outages or limits.
+
+Partial patches preserve other fields and Inbox options. Optional
+`--expected-user-id UUID` refuses a different authenticated account before the
+change; `--account NAME` selects a locally configured account. Workspace-delegated
+agents cannot read or change this account policy. Personal export includes it.
+Turning email off cancels queued work; a send already in progress or accepted
+cannot be recalled. The worker rechecks current membership, unread state,
+categories and the live verified Auth/profile address before attempting a send.
+
+Accepted means the provider returned a receipt and the guarded database
+acknowledgment succeeded, rather than a promise of human mailbox delivery.
+Retries retain the same payload and idempotency key. Automatic retry stops after
+eight attempts or before the provider's 24-hour duplicate-protection window
+expires; ambiguous jobs require operator review and are never given a new key.
+
+Outbound signing secrets are shown only by creation or `vel integrations rotate-webhook-secret --id WEBHOOK_ID --show-secret`. Both require an admin/owner and explicit one-time secret output. New and rotated hooks sign with the raw secret; legacy hooks retain SHA-256 derivation until rotated.
+
+
+Shared agent loop controls include worktree and delivery limits through protocol 2. Read with `velocity agents loop-settings --protocol-version 2` (or `vel`); updates use `protocolVersion: 2` in the input alongside both current revisions. `worktrees: true` requires native isolated checkouts; `deliveryMode: "local_only"` prevents managed push/PR delivery. Older clients receive an upgrade error while execution restrictions are active. Existing provider and local authorization still apply.

@@ -1,6 +1,6 @@
 # Velocity CLI feature coverage
 
-Version 0.2.6 · protocol 1 · schema `ffb5ddd1a09cc9ab38e22219390b3faba58005d84b811fcdd6c2d2ab32c6a362`
+Version 0.2.22 · protocol 1 · schema `11b8237362295780edafd966e5e0b33699faf29ae91c684fc806ae98240fb817`
 
 Generated from all schema modules, REST routes, MCP tool definitions and authenticated product pages. CI rejects stale coverage and unclassified REST routes. Every GraphQL root operation has a typed command; `--select` exposes optional nested histories, relations, team members and PRD versions. Server roles, scopes, plans and feature gates remain authoritative.
 
@@ -9,6 +9,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | Module | Command | Operation | Access | Context | Pagination |
 |---|---|---|---|---|---|
 | base | `velocity api node` | `node` | cli:read | Selected workspace | Single result / recorded summary |
+| agent-loop | `velocity agents loop-settings` | `agentLoopSettings` | cli:read | Selected workspace | Single result / recorded summary |
 | ai-usage | `velocity ai ai-usage-report` | `aiUsageReport` | cli:read | Selected workspace | Single result / recorded summary |
 | ai-usage | `velocity ai ai-usage` | `aiUsage` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
 | ai-usage | `velocity ai ai-budget-status` | `aiBudgetStatus` | cli:read | Selected workspace | Single result / recorded summary |
@@ -32,6 +33,9 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | backup | `velocity backups list` | `workspaceBackupsPage` | cli:read | Selected workspace | Cursor |
 | billing | `velocity billing subscription` | `subscription` | cli:read | Selected workspace | Single result / recorded summary |
 | billing | `velocity billing analytics` | `analytics` | cli:read | Selected workspace | Single result / recorded summary |
+| claude | `velocity agents list` | `agentRuns` | cli:read | Selected workspace | Offset |
+| claude | `velocity agents get` | `agentRun` | cli:read | Selected workspace | Single result / recorded summary |
+| claude | `velocity agents agents-configuration` | `agentsConfiguration` | cli:read | Selected workspace | Single result / recorded summary |
 | claude | `velocity agents claude-integration` | `claudeIntegration` | cli:read | Selected workspace | Single result / recorded summary |
 | claude | `velocity agents claude-agent-runs` | `claudeAgentRuns` | cli:read | Selected workspace | Offset |
 | claude | `velocity agents claude-usage` | `claudeUsage` | cli:read | Selected workspace | Provider / summary / window array; inspect API policy |
@@ -94,6 +98,8 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | mcp | `velocity mcp mcp-usage` | `mcpUsage` | cli:read | Selected workspace | Single result / recorded summary |
 | mcp | `velocity mcp mcp-workspace-usage` | `mcpWorkspaceUsage` | cli:read | Selected workspace | Single result / recorded summary |
 | mcp | `velocity mcp mcp-connections` | `mcpConnectionsPage` | cli:read | Selected workspace | Cursor |
+| notification | `velocity notifications issue-email-preferences` | `issueEmailPreferences` | cli:read | Account | Single result / recorded summary |
+| notification | `velocity notifications preferences` | `notificationPreferences` | cli:read | Account | Single result / recorded summary |
 | notification | `velocity notifications list` | `notifications` | cli:read | Selected workspace | Offset |
 | notification | `velocity notifications unread-notification-count` | `unreadNotificationCount` | cli:read | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds get` | `prd` | cli:read | Selected workspace | Single result / recorded summary |
@@ -166,6 +172,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | workspace | `velocity workspaces workspace-members` | `workspaceMembersPage` | cli:read | Selected workspace | Cursor |
 | workspace | `velocity workspaces workspace-invitations` | `workspaceInvitationsPage` | cli:read | Selected workspace | Cursor |
 | zapier | `velocity integrations zapier-integration` | `zapierIntegration` | cli:read | Selected workspace | Single result / recorded summary |
+| agent-loop | `velocity agents update-loop-settings` | `updateAgentLoopSettings` | cli:write | Selected workspace | Single result / recorded summary |
 | ai-usage | `velocity ai set-ai-credit-override` | `setAiCreditOverride` | cli:write | Selected workspace | Single result / recorded summary |
 | api | `velocity keys create-api-key` | `createApiKey` | cli:write | Selected workspace | Single result / recorded summary |
 | api | `velocity keys update-api-key` | `updateApiKey` | cli:write | Selected workspace | Single result / recorded summary |
@@ -221,6 +228,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | integration | `velocity integrations post-tweet` | `postTweet` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations create-issue-from-tweet` | `createIssueFromTweet` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations create-webhook` | `createWebhook` | cli:write | Selected workspace | Single result / recorded summary |
+| integration | `velocity integrations rotate-webhook-secret` | `rotateWebhookSecret` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations update-webhook` | `updateWebhook` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations delete-webhook` | `deleteWebhook` | cli:write | Selected workspace | Single result / recorded summary |
 | integration | `velocity integrations test-webhook` | `testWebhook` | cli:write | Selected workspace | Single result / recorded summary |
@@ -242,6 +250,10 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | mcp | `velocity mcp update-mcp-connection` | `updateMcpConnection` | cli:write | Selected workspace | Single result / recorded summary |
 | mcp | `velocity mcp delete-mcp-connection` | `deleteMcpConnection` | cli:write | Selected workspace | Single result / recorded summary |
 | mcp | `velocity mcp regenerate-mcp-token` | `regenerateMcpToken` | cli:write | Selected workspace | Single result / recorded summary |
+| notification | `velocity notifications update-issue-email-preferences` | `updateIssueEmailPreferences` | cli:write | Account | Single result / recorded summary |
+| notification | `velocity notifications reset-issue-email-preferences` | `resetIssueEmailPreferences` | cli:write | Account | Single result / recorded summary |
+| notification | `velocity notifications update-preferences` | `updateNotificationPreferences` | cli:write | Account | Single result / recorded summary |
+| notification | `velocity notifications reset-preferences` | `resetNotificationPreferences` | cli:write | Account | Single result / recorded summary |
 | notification | `velocity notifications mark-notification-read` | `markNotificationRead` | cli:write | Selected workspace | Single result / recorded summary |
 | notification | `velocity notifications mark-all-notifications-read` | `markAllNotificationsRead` | cli:write | Selected workspace | Single result / recorded summary |
 | prd | `velocity prds create` | `createPrd` | cli:write | Selected workspace | Single result / recorded summary |
@@ -334,6 +346,9 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 
 | API | Command or handoff | Policy |
 |---|---|---|
+| `/api/account/delete` | velocity open delete-account | Own current-browser-session-only preview and explicit permanent deletion. Typed confirmation, current MFA/revocation and serialized last-owner checks protect the exact account. Shared work retains anonymized attribution; authentication and personal credentials are removed atomically. |
+| `/api/account/email` | velocity open change-email | Exact current browser account/session/MFA only. Native verification of current and new addresses, explicit owned proof confirmation, verified profile synchronization and unchanged browser assurance. Delegated credentials use the pinned interactive handoff. |
+| `/api/account/mfa` | velocity open mfa; velocity open security | Own browser-session-only authenticator enrollment, challenge, verified removal and sign-in assurance. Interactive TOTP material and codes stay in the browser; account and factor identities are verified server-side. |
 | `/api/ai/automation-suggestions` | velocity ai update-automation-suggestions | Platform authorization, entitlements, budget and metering; workspace filled from selected context. |
 | `/api/ai/backfill` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/ai/bottleneck-detection` | velocity ai bottleneck-detection | Platform authorization, entitlements, budget and metering; workspace filled from selected context. |
@@ -385,6 +400,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/cli/identity` | velocity whoami; velocity diagnostics | Live identity and protocol compatibility. |
 | `/api/cli/meta` | velocity whoami; velocity diagnostics | Live identity and protocol compatibility. |
 | `/api/contact` | Public web/marketing surfaces; roadmap/referrals commands for authenticated management | Public visitor or operational endpoint; not an additional authenticated account/workspace action. |
+| `/api/cron/ai-gateway-health` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/attachment-cleanup` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/audit-log-retention` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/automation-suggestions` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
@@ -393,6 +409,8 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/cron/cycle-transitions` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/domain-reverification` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/feedback-updates` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
+| `/api/cron/issue-emails` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
+| `/api/cron/landingboost-webhooks` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/seal-integration-secrets` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/sprint-predictions` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/team-health-digest` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
@@ -400,12 +418,13 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/cron/webhook-retry` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/workspace-events-retention` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/cron/workspace-health-digest` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
-| `/api/export` | velocity api rest --path /api/export --input JSON | Complete matching CSV/JSON downloads in immutable ID order, bounded at 32 MiB; audit exports refuse more than 5,000 rows. Narrow creation-date/actor/action filters for larger results. Shared REST authentication enforces membership, scopes and consent. |
+| `/api/export` | velocity api rest --path /api/export --input JSON | Workspace CSV/JSON downloads are complete in immutable ID order; audit refuses more than 5,000 rows. Account JSON uses entity=account and format=json, one snapshot, explicit scope/count/redaction manifest and account authority; current approved memberships bound contributions. All downloads are bounded at 32 MiB and fail before returning a partial success. Released 0.2.7 REST requires a selected workspace; browser/direct account downloads do not. |
 | `/api/graphql` | All schema commands; velocity api graphql | Public authenticated platform contract. |
 | `/api/health` | Public web/marketing surfaces; roadmap/referrals commands for authenticated management | Public visitor or operational endpoint; not an additional authenticated account/workspace action. |
 | `/api/import` | velocity api rest --path /api/import --method POST --input JSON | Scoped issue creation with team selection, validated references and normal events. Maximum 100 rows / 1 MiB. Per-row created IDs, failures and warnings are preserved; incomplete results exit 8. Retry only failed rows after correction. |
 | `/api/integrations/jira/import` | velocity api rest --path /api/integrations/jira/import | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
 | `/api/integrations/jira/preview` | velocity api rest --path /api/integrations/jira/preview | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
+| `/api/integrations/landingboost` | velocity api rest --path /api/integrations/landingboost --input JSON | Read saved account status/history and exact mapped-page diagnoses without scan credits. Requires integrationId, the selected workspaceId, approved CLI consent or an admin API key, and an admin/owner role. Connection and mappings use GraphQL integration commands. |
 | `/api/integrations/linear/files/[workspaceId]/[issueId]/[assetId]` | velocity open page --path issues | Session-only private imported-attachment download. Direct issue files use the separate native attachments commands. |
 | `/api/integrations/linear/import` | velocity api rest --path /api/integrations/linear/import | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
 | `/api/integrations/linear/preview` | velocity api rest --path /api/integrations/linear/preview | Normal platform REST authorization. Provider imports preserve streamed partial results; ordinary GraphQL bulk/content commands offer typed alternatives. |
@@ -450,6 +469,7 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/webhooks/circleci` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/datadog` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/github` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
+| `/api/webhooks/landingboost` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/netlify` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/opsgenie` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/pagerduty` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
@@ -459,7 +479,8 @@ Generated from all schema modules, REST routes, MCP tool definitions and authent
 | `/api/webhooks/stripe` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/twitter` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
 | `/api/webhooks/vercel` | Integration/automation/agent settings and recorded histories | Signed provider callback or privileged system job; an ordinary management CLI cannot impersonate it. |
-| `/api/workspace-events` | velocity open page --path activity; velocity notifications watch; issue activities via --select | Browser/JWT activity stream has bounded snapshot reconciliation, not a durable cursor. CLI polls recorded notifications. |
+| `/api/workspace-events/feed` | velocity api mcp list_workspace_events --args @payload.json | Seven-day durable journal with user/workspace/filter-bound cursors, paginated MCP fallback and authenticated SSE. Expired cursors require a fresh snapshot; deduplicate event IDs. The UI consumes the same committed source. |
+| `/api/workspace-events` | velocity open page --path activity; velocity api mcp list_workspace_events; velocity notifications watch | UI invalidation stream reconciles snapshots from the same committed journal as the durable agent cursor feed. CLI event pagination uses MCP; notification watch still polls recorded notifications. |
 | `/api/zapier/actions/create-comment` | Schema management commands; integrations/zapier configuration | Third-party automation protocol wrappers and inbound triggers, not an additional human management surface. |
 | `/api/zapier/actions/create-issue` | Schema management commands; integrations/zapier configuration | Third-party automation protocol wrappers and inbound triggers, not an additional human management surface. |
 | `/api/zapier/actions/create-project` | Schema management commands; integrations/zapier configuration | Third-party automation protocol wrappers and inbound triggers, not an additional human management surface. |
@@ -491,50 +512,78 @@ These exact tools are available through `velocity api mcp TOOL --args @payload.j
 
 - `add_comment`
 - `add_domain`
+- `check_story`
 - `create_branch`
 - `create_issue`
+- `create_issues_from_stories`
+- `create_prd`
+- `create_prd_requirement`
 - `create_roadmap_item`
 - `create_roadmap_version`
 - `create_user_api_key`
+- `create_user_story`
 - `create_workspace`
 - `delete_roadmap_item`
 - `delete_workspace`
 - `get_active_sprint`
+- `get_agent_loop_settings`
+- `get_agent_repository`
 - `get_current_user`
 - `get_cycle`
 - `get_issue`
+- `get_issue_attachment`
 - `get_issue_context`
 - `get_my_issues`
 - `get_pending_agent_runs`
+- `get_prd`
 - `get_project`
 - `get_roadmap_settings`
+- `get_user_story`
 - `get_workspace`
 - `link_commit`
+- `link_issue_to_story`
 - `link_pr`
 - `list_comments`
 - `list_cycles`
 - `list_domains`
+- `list_issue_attachments`
 - `list_issues`
 - `list_labels`
 - `list_members`
+- `list_prds`
 - `list_projects`
 - `list_roadmap_items`
 - `list_roadmap_versions`
 - `list_statuses`
 - `list_teams`
 - `list_user_api_keys`
+- `list_user_stories`
+- `list_workspace_events`
 - `list_workspaces`
 - `open_pr`
+- `prepare_issue_attachment`
+- `propose_issues_for_story`
+- `propose_prd`
+- `propose_stories`
+- `propose_story_split`
 - `remove_domain`
+- `remove_issue_attachment`
 - `revoke_user_api_key`
 - `search_issues`
+- `set_prd_status`
+- `split_user_story`
 - `transition_issue`
+- `update_agent_loop_settings`
 - `update_agent_run`
 - `update_current_user`
 - `update_issue`
+- `update_prd`
+- `update_prd_requirement`
 - `update_roadmap_item`
 - `update_roadmap_settings`
+- `update_user_story`
 - `update_workspace`
+- `upload_issue_attachment`
 - `verify_domain`
 - `vote_roadmap_item`
 
@@ -543,11 +592,14 @@ These exact tools are available through `velocity api mcp TOOL --args @payload.j
 | Page | Data commands | Browser handoff |
 |---|---|---|
 | `[workspaceSlug]/activity` | audit; notifications watch; issue activities via --select | velocity open page --path activity |
+| `[workspaceSlug]/agents` | agents list; agents get; agents update-claude-config; agents update-codex-config; agents loop-settings; agents update-loop-settings | velocity open page --path agents |
+| `[workspaceSlug]/agents/runs/[runId]` | agents list; agents get; agents update-claude-config; agents update-codex-config; agents loop-settings; agents update-loop-settings | velocity open page --path agents/runs |
 | `[workspaceSlug]/analytics` | billing analytics; ai; uptime | velocity open page --path analytics |
 | `[workspaceSlug]/cycles/[cycleId]` | cycles | velocity open page --path cycles |
 | `[workspaceSlug]/cycles` | cycles | velocity open page --path cycles |
 | `[workspaceSlug]/documents/[documentId]` | documents; comments | velocity open page --path documents |
 | `[workspaceSlug]/documents` | documents; comments | velocity open page --path documents |
+| `[workspaceSlug]/getting-started` | workspaces; teams; statuses; projects; issues; documents; prds | velocity open page --path getting-started |
 | `[workspaceSlug]/inbox` | notifications | velocity open page --path inbox |
 | `[workspaceSlug]/issues/[issueRef]` | issues; comments | velocity open page --path issues |
 | `[workspaceSlug]/issues` | issues; comments | velocity open page --path issues |
@@ -560,6 +612,7 @@ These exact tools are available through `velocity api mcp TOOL --args @payload.j
 | `[workspaceSlug]/settings/account/api-keys` | account; sessions; keys; notifications | velocity open page --path settings/account/api-keys |
 | `[workspaceSlug]/settings/account/feedback` | account; sessions; keys; notifications | velocity open page --path settings/account/feedback |
 | `[workspaceSlug]/settings/account/preferences` | account; sessions; keys; notifications | velocity open page --path settings/account/preferences |
+| `[workspaceSlug]/settings/agents` | agents list; agents get; agents update-claude-config; agents update-codex-config; agents loop-settings; agents update-loop-settings | velocity open page --path settings/agents |
 | `[workspaceSlug]/settings/ai-usage` | ai | velocity open page --path settings/ai-usage |
 | `[workspaceSlug]/settings/ai` | ai | velocity open page --path settings/ai |
 | `[workspaceSlug]/settings/api/oauth` | keys; mcp | velocity open page --path settings/api/oauth |
@@ -577,8 +630,13 @@ These exact tools are available through `velocity api mcp TOOL --args @payload.j
 | `[workspaceSlug]/settings/import/linear` | api rest; bulk; content export/import | velocity open page --path settings/import/linear |
 | `[workspaceSlug]/settings/import` | api rest; bulk; content export/import | velocity open page --path settings/import |
 | `[workspaceSlug]/settings/integrations/[provider]` | integrations; agents; mcp | velocity open page --path settings/integrations |
+| `[workspaceSlug]/settings/integrations/circleci` | integrations; agents; mcp | velocity open page --path settings/integrations/circleci |
 | `[workspaceSlug]/settings/integrations/claude` | integrations; agents; mcp | velocity open page --path settings/integrations/claude |
 | `[workspaceSlug]/settings/integrations/codex` | integrations; agents; mcp | velocity open page --path settings/integrations/codex |
+| `[workspaceSlug]/settings/integrations/datadog` | integrations; agents; mcp | velocity open page --path settings/integrations/datadog |
+| `[workspaceSlug]/settings/integrations/landingboost` | integrations; agents; mcp | velocity open page --path settings/integrations/landingboost |
+| `[workspaceSlug]/settings/integrations/make` | keys; issues; webhooks | velocity open page --path settings/integrations/make |
+| `[workspaceSlug]/settings/integrations/opsgenie` | integrations; agents; mcp | velocity open page --path settings/integrations/opsgenie |
 | `[workspaceSlug]/settings/integrations` | integrations; agents; mcp | velocity open page --path settings/integrations |
 | `[workspaceSlug]/settings/integrations/pagerduty` | integrations; agents; mcp | velocity open page --path settings/integrations/pagerduty |
 | `[workspaceSlug]/settings/integrations/stripe` | integrations; agents; mcp | velocity open page --path settings/integrations/stripe |
@@ -604,7 +662,6 @@ These exact tools are available through `velocity api mcp TOOL --args @payload.j
 
 ## Explicit API gaps
 
-- **ENGIN-462 — Account lifecycle and notification delivery preferences:** No account deletion/full data export/email mutation; notification settings Save is currently a placeholder. Arbitrary stored JSON does not activate delivery policies.
 
 ## Additional workflows
 

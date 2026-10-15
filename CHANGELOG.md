@@ -1,5 +1,97 @@
 # Changelog
 
+## 0.2.22
+
+- Negotiate shared agent worktree and delivery controls with `agents loop-settings --protocol-version 2` and `agents update-loop-settings` input `protocolVersion: 2`.
+- Preserve both current revisions, explicit complete settings replacements, scoped authorization and actionable legacy-client upgrade errors. Shared restrictions never grant local delivery permissions.
+- Align installation instructions with the verified 0.2.22 archive.
+
+## 0.2.19
+
+- Accept documented `--input` JSON/file/stdin on typed input-object commands, including issue-email and Inbox preferences. Individual field flags override that input; `--input` replaces the input portion of `--args`.
+- Keep typed validation, selected-account authorization and atomic partial-update behavior; schema-invalid input is rejected before transmission, and server validation errors are surfaced without retrying or claiming success.
+
+## 0.2.18
+
+- Add account-only issue email preference read, atomic partial update and reset commands, with optional expected-account protection.
+- Support opt-in delivery of new unread issue activity, soon after activity or in daily/weekly digests. Existing Inbox categories still select what is eligible; email stays off by default.
+- Document account time zones, bounded workspace batches, current access/verified-address checks, guarded provider acceptance and conservative retry limits.
+
+## 0.2.17
+
+- Add the exact account/workspace-pinned `vel open change-email` browser handoff.
+- Document native two-address email verification, explicit account-bound confirmation, preserved browser MFA and verified profile synchronization.
+
+## 0.2.16
+
+- Add `vel open delete-account` / `velocity open delete-account` for the selected account's explicit permanent deletion flow.
+- Account preview explains retained shared work and ownership blockers. Deletion checks current authentication, MFA, typed confirmation and serialized ownership, removes sign-in/personal credentials, and preserves anonymized shared attribution.
+- Verified email mutation and notification-email delivery remain tracked separately under ENGIN-462.
+
+## 0.2.15
+
+- Add `vel open mfa` / `velocity open mfa` for the exact selected account/workspace authenticator setup and verification panel.
+- Inventory supported browser-session enrollment/challenges/removal accurately. Account deletion, verified email changes and notification-email delivery remain tracked separately.
+- Authenticator browser sign-ins require a verified second factor; existing scoped API credentials retain their separate authorization.
+
+## 0.2.14
+
+- Expose actionable Inbox categories and all stored automation/service alerts, authoritative workspace context, verified agent run references and stable cursors through the generated notification commands.
+- Inbox reads, counts and read actions share current membership, recipient, role and entity checks. Unknown future notices remain readable as OTHER.
+- Support category/cursor arguments and optional expected-user protection on read actions; ordinary management needs no AI credential.
+
+## 0.2.13
+
+Advertise the five private MCP attachment tools in the versioned feature
+inventory. The existing `attachments upload/list/download/remove` commands
+remain the binary transfer path for local screenshots and files, including
+explicit stable upload IDs. The attachment API now also accepts live MCP
+read/write credentials with the same workspace, consent, connection and plan
+checks as MCP. The generic `api mcp` command can call the new tools; image
+bytes use direct bounded MCP transfer or the private binary API, never issue
+descriptions or public hosting.
+
+## 0.2.12
+
+Include the workspace Getting started guide in the feature inventory and its
+existing browser handoff: `vel open page --path getting-started`. Native teams,
+statuses, projects, issues and planning commands remain available. The guide
+reads progress and offers optional scoped prompts; it creates no placeholders
+or agent grants.
+
+## 0.2.10
+
+Read owner SSO change notices through notification commands. Creating,
+updating or deleting SSO configuration now requires workspace owner access,
+matching the server and browser settings policy. Admins may still read it.
+
+## 0.2.9
+
+Add `integrations rotate-webhook-secret` for admin/owner outbound webhook
+signing-key rotation. Like creation, it requires explicit `--show-secrets`
+before changing a one-time secret and is never automatically retried. New
+and rotated webhooks expose RAW signing-key mode; legacy hooks expose SHA256.
+
+## 0.2.8
+
+Windows credential helpers allow up to 30 seconds for PowerShell startup and
+input decoding, followed by a separate 15-second vault-operation deadline.
+Timeouts identify the stalled phase. Cancelling a command promptly terminates
+its OS credential helper and closes its pipes; reads preserve cancellation and
+unavailable errors. Credentials still use the OS vault, without automatic
+retries or plaintext fallback. Linux and macOS retain their 15-second deadline.
+
+## 0.2.7
+
+Add account-wide in-app notification preferences: `notifications preferences`,
+`notifications update-preferences` and `notifications reset-preferences`.
+Partial updates preserve other settings and explicit reset restores defaults.
+The platform enforces opt-outs when notifications are created, including issue
+subscriber delivery. Existing Inbox entries remain available. These commands
+require account authorization and normal read/write scopes; workspace-connected
+agents cannot change account-wide policy. Issue email notifications and email
+digests are not available yet.
+
 ## 0.2.6
 
 Concurrent commands retry when a credential-lock owner releases or replaces its
