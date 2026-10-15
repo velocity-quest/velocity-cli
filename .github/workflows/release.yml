@@ -25,6 +25,9 @@ jobs:
         run: node scripts/prepare-candidate.mjs
       - run: npm install --prefix "$RUNNER_TEMP/cli-install" --ignore-scripts "$GITHUB_WORKSPACE/release/velocity-quest-cli-$(cat version.txt).tgz"
       - run: node scripts/smoke-install.mjs "$RUNNER_TEMP/cli-install" "$(cat version.txt)"
+      - name: Check packed Windows vault deadlines and cancellation
+        if: runner.os == 'Windows'
+        run: node scripts/check-windows-keychain.mjs "$RUNNER_TEMP/cli-install"
   publish:
     needs: install
     runs-on: ubuntu-latest
