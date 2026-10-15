@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.23
+
+- Read and update published agent priority ordering with `agents loop-settings --protocol-version 3` and `agents update-loop-settings` JSON `protocolVersion: 3`.
+- Require a complete priority permutation and both revisions. Earlier settings protocols preserve the saved order; existing workers use server queue ordering without an upgrade.
+
 ## 0.2.22
 
 - Negotiate shared agent worktree and delivery controls with `agents loop-settings --protocol-version 2` and `agents update-loop-settings` input `protocolVersion: 2`.

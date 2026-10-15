@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.22](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.22),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.22.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.22`.
+[Velocity CLI 0.2.23](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.23),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.23.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.23`.
 
 ```sh
 velocity --version
@@ -392,3 +392,14 @@ Outbound signing secrets are shown only by creation or `vel integrations rotate-
 
 
 Shared agent loop controls include worktree and delivery limits through protocol 2. Read with `velocity agents loop-settings --protocol-version 2` (or `vel`); updates use `protocolVersion: 2` in the input alongside both current revisions. `worktrees: true` requires native isolated checkouts; `deliveryMode: "local_only"` prevents managed push/PR delivery. Older clients receive an upgrade error while execution restrictions are active. Existing provider and local authorization still apply.
+
+Read published queue ordering with `vel agents loop-settings --protocol-version 3`.
+Apply using `vel agents update-loop-settings --input @controls.json`: include
+`protocolVersion: 3`, both current revisions, `action: "apply"` and the full
+`settings` object. Its `priorityOrder` must contain all five priorities exactly
+once: 0 Urgent, 1 High, 2 Medium, 3 Low and 4 None. Local and hosted queues use
+this order before their batch limit on the next poll; due date and age break
+ties. Running tasks continue. Earlier settings protocols preserve the saved
+order; disabling controls uses default ordering until the next apply. Private
+draft preferences are never activated implicitly. Existing workers need no
+upgrade for server ordering. Model, effort and budget fields remain unsupported.
