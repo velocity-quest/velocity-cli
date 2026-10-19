@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.23](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.23),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.23.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.23`.
+[Velocity CLI 0.2.32](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.32),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.32.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.32`.
 
 ```sh
 velocity --version
@@ -403,3 +403,19 @@ ties. Running tasks continue. Earlier settings protocols preserve the saved
 order; disabling controls uses default ordering until the next apply. Private
 draft preferences are never activated implicitly. Existing workers need no
 upgrade for server ordering. Model, effort and budget fields remain unsupported.
+
+### Per-issue agent models (0.2.25)
+
+```sh
+vel issues get ENGIN-123 --select '{ id agentModelOverrides agentModelRevision }'
+vel issues update ENGIN-123 --input '{"agentModelOverrides":{"codex":{"model":"YOUR_MODEL_ID","effort":"high"}}}'
+vel issues update ENGIN-123 --input '{"agentModelOverrides":null}'
+```
+
+Use `codex`, `claudeCode` or `anthropic` keys. Native effort must be supported by
+that model; Claude Code effort requires a model, and the local Anthropic API
+accepts a model only. Empty fields inherit defaults; `null` or `{}` clears all.
+Explicit worker flags override their issue fields, while shared workspace limits
+remain authoritative. Worker 0.5.16 reads current settings before claiming and pins
+them for the attempt and approval resumes. Older workers cannot ignore overrides.
+Current workspace membership, grants and issue-edit authority apply.
