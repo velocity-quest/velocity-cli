@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.33](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.33),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.33.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.33`.
+[Velocity CLI 0.2.34](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.34),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.34.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.34`.
 
 ```sh
 velocity --version
