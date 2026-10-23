@@ -6,6 +6,7 @@ import { readFile, stat, rm } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 import { SmokeChildren } from './smoke-children.mjs';
+import { validateReleaseReadme } from './release-readme.mjs';
 
 const prefix = resolve(process.argv[2]);
 const version = process.argv[3];
@@ -13,7 +14,7 @@ const packageRoot = join(prefix, 'node_modules/@velocity-quest/cli');
 const manifest = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
 assert.equal(manifest.version, version); assert.equal(manifest.private, false);
 assert.equal(manifest.bin.velocity, manifest.bin.vel);
-assert.ok((await readFile(join(packageRoot,'README.md'),'utf8')).includes('releases/tag/cli-v'+version));
+validateReleaseReadme(await readFile(join(packageRoot, 'README.md'), 'utf8'), manifest.version);
 assert.ok(!manifest.dependencies['@velocity/cli-core']);
 for (const dependency of Object.values(manifest.dependencies)) assert.match(dependency, /^\d+\.\d+\.\d+$/);
 for (const alias of ['velocity', 'vel']) {
