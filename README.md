@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.34](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.34),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.34.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.34`.
+[Velocity CLI 0.2.35](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.35),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.35.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.35`.
 
 ```sh
 velocity --version
@@ -195,6 +195,22 @@ Notification watch polls recorded notifications, follows every supported page,
 deduplicates IDs during a run, and retries bounded outages. `--after` inclusively
 replays a timestamp so consumers can deduplicate IDs on restart; this is polling,
 not a guarantee about live progress or transaction commit order.
+
+## Follow project, cycle and roadmap activity
+
+```sh
+vel --workspace my-workspace follows get --entity-type PROJECT --entity-id PROJECT_UUID
+vel --workspace my-workspace follows set --entity-type PROJECT --entity-id PROJECT_UUID --following true
+vel --workspace my-workspace follows set --entity-type PROJECT --entity-id PROJECT_UUID --following false
+vel notifications update-preferences --input '{"followedActivity":false}'
+```
+
+Use `CYCLE` or `ROADMAP_ITEM` with that entity's UUID. Following is personal to
+your selected account and workspace; membership, assignment and votes do not opt
+you in. Status changes arrive in Inbox immediately, while ownership and schedule
+edits are grouped hourly. Self actions are suppressed. Unfollowing hides earlier
+activity notices, and following again receives only future activity. The account
+preference changes delivery across your account and requires account authorization.
 
 ## Issue CSV/JSON import
 
