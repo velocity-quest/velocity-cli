@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.37](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.37),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.37.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.37`.
+[Velocity CLI 0.2.38](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.38),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.38.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.38`.
 
 ```sh
 velocity --version
@@ -218,7 +218,10 @@ preference changes delivery across your account and requires account authorizati
 vel --workspace velocity-project api rest --path /api/import --method POST --input @import.json
 ```
 
-`import.json` contains `{"teamId":"ENGIN","issues":[{"title":"New issue","priority":1}]}`.
+`import.json` contains `{"requestKey":"a fresh UUID retained for retries","teamId":"ENGIN","issues":[{"title":"New issue","priority":1}]}`.
+Generate a valid UUID once, for example with `node -e "console.log(crypto.randomUUID())"`.
+Reuse that key and the identical input after a lost reply to review the same job without importing rows again.
+A changed payload with the same key is rejected. Omitting the key creates a new operation.
 Rows can override the default team with `teamId`; a multi-team workspace requires
 an explicit choice. Priorities are 0 urgent through 4 none, or their names.
 The server validates workspace/team references and returns each created ID.
@@ -226,6 +229,23 @@ Each request supports at most 100 rows and 1 MiB. Incomplete outcomes exit 8
 with row results in the error details. Review and correct only rows marked
 `error` before retrying; rows marked `created`, `created_with_warnings` or
 `unknown` must not be replayed. Mutations are never automatically retried.
+
+Import outcomes stay in Settings → Import and can be reviewed without the source file:
+
+```bash
+vel imports list --first 25 --offset 0
+vel imports get JOB_UUID
+vel notifications update-preferences --input '{"importActivity":false}'
+```
+
+You can review your jobs; workspace administrators can review current workspace
+jobs. Job history contains counts and known row links, not uploaded content or
+credentials. Completed, partial, failed and unconfirmed outcomes are distinct.
+Dry runs have history but send no Inbox notice. Interrupted jobs are reconciled
+on the hourly sweep or before another import; that does not restart them.
+GitHub deduplication applies to the same request key, not to new imports of the
+same upstream issue. For unresolved rows, inspect the saved job before creating
+a new request. Turning notices back on does not backfill earlier outcomes.
 
 ## Issue links and subscriptions
 
