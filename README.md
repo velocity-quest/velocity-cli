@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.35](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.35),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.35.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.35`.
+[Velocity CLI 0.2.36](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.36),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.36.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.36`.
 
 ```sh
 velocity --version
@@ -435,3 +435,11 @@ Explicit worker flags override their issue fields, while shared workspace limits
 remain authoritative. Worker 0.5.16 reads current settings before claiming and pins
 them for the attempt and approval resumes. Older workers cannot ignore overrides.
 Current workspace membership, grants and issue-edit authority apply.
+
+Dependency and UTC deadline Inbox controls are independent account preferences:
+
+```bash
+velocity notifications update-preferences --input '{"dependencyActivity":true,"deadlineAlerts":true}'
+```
+
+These alerts use actual human issue assignment/subscriptions and explicit project/cycle follows. Date windows are tomorrow, today and the first overdue day in UTC; cycles complete on their end date instead of receiving due/overdue reminders. See [work alert policy](https://github.com/velocity-quest/velocity/blob/main/docs/work-alerts.md).
