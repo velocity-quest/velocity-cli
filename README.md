@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.39](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.39),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.39.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.39`.
+[Velocity CLI 0.2.40](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.40),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.40.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.40`.
 
 ```sh
 velocity --version
@@ -470,3 +470,9 @@ Use `--help` for workspace/campaign/claim options. Reserving a claim does not
 publish a post or grant credits. Personal X verification finishes in the browser;
 the CLI cannot supply verification evidence. Published campaign limits, membership,
 plan eligibility, duplicate identity/post checks and credit freezes still apply.
+
+## Planning pipelines
+
+Use `velocity agents run-planning-pipeline --input @plan.json` to start the fixed PRD, story, split and issue proposal flow in the selected workspace. Set a team, description (or an existing PRD for later stages), optional project, start/stop stages and maximum cost in cents. An omitted cap inherits workspace defaults; zero stops paid work. Read the returned run with `velocity agents get RUN_ID --select '{ id status planningPipeline }'`.
+
+Open the run in Agents to review proposals, usage and created artifacts. Checkpoint approval and workspace planning defaults require a signed-in human in the browser. CLI and MCP credentials cannot approve on a person’s behalf. The workspace cloud agent, AI feature access and available credits are required before inference.
