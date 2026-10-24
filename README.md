@@ -8,9 +8,9 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
 CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.38](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.38),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.38.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.38`.
+[Velocity CLI 0.2.39](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.39),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.39.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.39`.
 
 ```sh
 velocity --version
@@ -463,3 +463,10 @@ velocity notifications update-preferences --input '{"dependencyActivity":true,"d
 ```
 
 These alerts use actual human issue assignment/subscriptions and explicit project/cycle follows. Date windows are tomorrow, today and the first overdue day in UTC; cycles complete on their end date instead of receiving due/overdue reminders. See [work alert policy](https://github.com/velocity-quest/velocity/blob/main/docs/work-alerts.md).
+
+Verified X sharing campaigns are available through `velocity referrals social-sharing`,
+`velocity referrals start-social-share-claim`, and `velocity referrals retry-social-share-reward`.
+Use `--help` for workspace/campaign/claim options. Reserving a claim does not
+publish a post or grant credits. Personal X verification finishes in the browser;
+the CLI cannot supply verification evidence. Published campaign limits, membership,
+plan eligibility, duplicate identity/post checks and credit freezes still apply.
