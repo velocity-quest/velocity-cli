@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "target": "velocity-cli",
-  "version": "0.2.42",
-  "sourceSha": "568dcacadeef7c9f14d5624195ba9bb8bae54b79",
-  "treeSha": "a8ba9d35f74579ad40e1aaf203b021b52b37a4e4",
-  "archiveSha256": "56635920bbbad0223c3ab0fbf1fc87ab07e8ee17372242ed75c2aaa66a105c0f",
-  "completedAt": "2026-10-30T01:49:20.715Z",
+  "version": "0.2.43",
+  "sourceSha": "9fd88ea206da2fcf9ad77148b97be7f6b3ffb464",
+  "treeSha": "e6a60a6d7ba1f786182346b1f8ce99dd50a3b298",
+  "archiveSha256": "d6655c62ec0dbaa4f7b59af4e4cbe7aee46e887b03dae4ed16f7ff9a31201262",
+  "completedAt": "2026-10-30T04:40:30.384Z",
   "environment": {
     "os": "linux",
     "architecture": "x64",
@@ -13,59 +13,84 @@
   },
   "checks": [
     {
-      "name": "types-release",
+      "name": "agent-negative-control.json",
       "passed": true,
-      "logSha256": "4fc5e143de3e855f69b07853ea8faa5fef3a9aebdd4bc385a5812e33c9b1b137"
+      "logSha256": "eaa64eaf5baadefac9ec4baee90f7df05a9a325b600e3abc9497697cccc11887"
     },
     {
-      "name": "tests-release",
+      "name": "agent-tests",
       "passed": true,
-      "logSha256": "56593167c6b04dacca4a5cfc8896dbbfb358d1e9d05a266edda65601652b61f0"
+      "logSha256": "64b7c0dbbdbaf767863ff484a18e0956f9e6b2830e399da258694a5933d64cc6"
     },
     {
-      "name": "sql-resumed",
+      "name": "server-tests-final",
       "passed": true,
-      "logSha256": "1b57b4965337a9164152d9cd5336f59fa7f3d9a7bdfef361f6c81b02d1373726"
+      "logSha256": "acf339c8b0285abf7f0fe6373bbdbeb20369ccea4d0624f7ce7fc5402d0da227"
+    },
+    {
+      "name": "web-tests",
+      "passed": true,
+      "logSha256": "065e6d5e583e7aa8098b1a7f89b7044a2bd5934d94bd583933664e9651cf2a44"
+    },
+    {
+      "name": "typechecks",
+      "passed": true,
+      "logSha256": "3e869a9c6925c503547a04521c2ec8ac32377a558abc06ff2bfda290c978b06a"
+    },
+    {
+      "name": "typecheck-web-final",
+      "passed": true,
+      "logSha256": "103272ef063d7fa1538f64c6f06761940d0cb621f397bb48810986f495cb2e18"
+    },
+    {
+      "name": "builds",
+      "passed": true,
+      "logSha256": "950a23ea578fd991d83671351400721291acaab51e5d0d3b6c9d4359ef852d41"
+    },
+    {
+      "name": "web-build-final",
+      "passed": true,
+      "logSha256": "9e6e02f3aeafbcf2d1a9d468d298d9c3180a288d7bf16d0202da6c681cd23437"
+    },
+    {
+      "name": "build-final-acceptance.json",
+      "passed": true,
+      "logSha256": "3091be05629a7d9b520aecdacc051ec4711e508ef33c09a3f01d1e2ff1eed47a"
+    },
+    {
+      "name": "timestamp-roundtrip.json",
+      "passed": true,
+      "logSha256": "948c3df41de558a15c0c8624a2f20b3dc63c88d780cbae3990739876952a2fa7"
+    },
+    {
+      "name": "sql-checks.json",
+      "passed": true,
+      "logSha256": "d82a585461cc17d9c033827e30fa34a4864fcc726cc52e615a3c3d6989a960fd"
     },
     {
       "name": "sql-upgrade",
       "passed": true,
-      "logSha256": "7da8164d1180fff0b3ad08eb9f36729f6b7e5a1414709047ab3915942d8ab46c"
+      "logSha256": "f7aea00d523cf3141f336af1edf11b4dd5f106380016924d6d4c97d5b8fc8c41"
     },
     {
-      "name": "builds-release",
+      "name": "sql-wait-race",
       "passed": true,
-      "logSha256": "5dec84d6a9f7ef6003031cded82fccd19d1dd7bd30d86de1929d07ac4d19acc9"
-    },
-    {
-      "name": "hold-storage-final",
-      "passed": true,
-      "logSha256": "7d2c0f8b1e527e39441a234f2b8b1efc2fed0e6cc6fea0c0c9839d0be6748375"
-    },
-    {
-      "name": "agent-final-build",
-      "passed": true,
-      "logSha256": "c6a896665e3a5edd5df228e10a9bb99f5efd8813657f632ebd9247f3d7a4ae0b"
-    },
-    {
-      "name": "web-lint",
-      "passed": true,
-      "logSha256": "e0221313f63a0e214412e2fa01b9622a76c0b6f4fc469aa554163dd92f6a9092"
-    },
-    {
-      "name": "cli-coverage-check",
-      "passed": true,
-      "logSha256": "0e052886a68c0c8df2b14e8961177472a086c0dc909c7f4e5f94fb70fdd2122d"
-    },
-    {
-      "name": "bundle-release",
-      "passed": true,
-      "logSha256": "94d773971104818767bb2c84037376ada14e840932bdf61763c7cca4981adb56"
+      "logSha256": "68473b50acece410a8d9d6fd123cc089b9a29a766e8326814a772121ed20e8fd"
     },
     {
       "name": "browser-review.json",
       "passed": true,
-      "logSha256": "11b3fa17d5854f203e12d2b5793761ff8fb83e2ce41a165815dc7bc32a782a11"
+      "logSha256": "aa57465a51061ca68a94df4ea5853166a11e4d193a9d4a74240243079485259d"
+    },
+    {
+      "name": "lint",
+      "passed": true,
+      "logSha256": "850debec924d48e5166db3b44749947bee78efa0336adc5cee002f24892e2d08"
+    },
+    {
+      "name": "bundle",
+      "passed": true,
+      "logSha256": "2ee9ae9df698b4a1231816bd2ee2634f84d2712176d24f2e1e5ef13c7e66b829"
     },
     {
       "name": "dependency-audit",
@@ -73,16 +98,61 @@
       "logSha256": "f09ff9230d0ba7230b04b14fda158c054782c15d31df3babf5ad09a80fd85fa2"
     },
     {
+      "name": "package-cli-acceptance.json",
+      "passed": true,
+      "logSha256": "2235e0dafc00f035f1aa6ad8be54b01584fc57d857c5d17dba29291affbe0906"
+    },
+    {
       "name": "cli clean package install and smoke",
       "passed": true,
-      "logSha256": "51e7899cc1d391060b7c9dd4527969fdc5a371ef87c53e41f477dd93cd5731ab"
+      "logSha256": "b8fee934fe4281ec58703558b9f2ac33cce4c98423cc431d743be92ce2ce8922"
     }
   ],
   "buildScope": {
-    "allSixProductionBuildsPassed": true,
-    "finalAgentLockMetadataCleanupRebuiltAndTested": true,
-    "finalSourceTypechecked": true,
-    "webAndDocsRequireVercelRebuildBeforePromotion": true
+    "passed": true,
+    "ciWaivedByOwner": true,
+    "agentTests": 999,
+    "serverTests": 3956,
+    "serverSkippedTests": 10,
+    "webTests": 3707,
+    "cliTests": 102,
+    "cliScriptTests": 12,
+    "cliCoreTests": 84,
+    "typechecks": [
+      "agent",
+      "cli",
+      "graphql",
+      "web"
+    ],
+    "builds": [
+      "cli-core",
+      "agent",
+      "cli",
+      "web",
+      "docs"
+    ],
+    "sqlChecks": 86,
+    "publicFunctionsCompared": 505,
+    "concurrentWaitRaces": 6,
+    "competingRepairAdmittedTurns": 1,
+    "browserModes": [
+      "agents",
+      "usage-free",
+      "usage-business",
+      "dark",
+      "mobile-agents",
+      "mobile-usage"
+    ],
+    "browserActualComponentsWithFixtureData": true,
+    "productionBrowserAuthenticationTested": false,
+    "lintErrors": 0,
+    "baselineLintWarnings": 762,
+    "bundlePassed": true,
+    "productionHighCriticalAdvisories": 0,
+    "cleanArchiveInstallScope": "Linux x64 Node22; macOS/Windows matrices not run",
+    "buildStartedAtSource": "0315caf02e280d389efeace1c948fddc371373bd",
+    "closedPrFixIncludedInFinalWebBuild": true,
+    "buildEnvironment": "Repository CI public fixture values; production uses Vercel settings"
   },
   "limitations": [
     "GitHub Actions did not run because the account is out of budget.",
