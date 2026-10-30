@@ -1,1 +1,10 @@
-{"version":"0.2.40","sha256":"f7ed33d0979a30a8baaa9456160cd8db50e97042aac3c6aef40970155d970424","sourceSha":"aa45e060c0be5497b7ce8b9951f066a5f495409a","sourceRun":40097116269}
+{
+  "version": "0.2.41",
+  "sourceSha": "6d6ae45edf538d84d116eadbda8f071409d23877",
+  "sha256": "9d367b6641bcd388f39d1b1504267efad043b3f93b06b40fd9102501b664e3cd",
+  "localVerification": {
+    "approvalId": "48a8f706-1d60-41ec-9cfb-b0fda2f2d34d",
+    "treeSha": "e969168325286c18cc4a77b994853f8d0cda062b",
+    "manifestSha256": "c7438d46334b189962fe03d9feaa20fff0f2fe1150eb36d4e6004c2daa32d8b1"
+  }
+}
