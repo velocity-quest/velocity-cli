@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "target": "velocity-cli",
-  "version": "0.2.43",
-  "sourceSha": "9fd88ea206da2fcf9ad77148b97be7f6b3ffb464",
-  "treeSha": "e6a60a6d7ba1f786182346b1f8ce99dd50a3b298",
-  "archiveSha256": "d6655c62ec0dbaa4f7b59af4e4cbe7aee46e887b03dae4ed16f7ff9a31201262",
-  "completedAt": "2026-10-30T04:40:30.384Z",
+  "version": "0.2.44",
+  "sourceSha": "4241e14151c0a401ddf4599f2247aa8004980086",
+  "treeSha": "00e284d6f63165d0a96dc9a1b944451cbfc1d542",
+  "archiveSha256": "f1718144d9be607df5db77aff1b385ffd3258ac1484845c64b5806be0539f870",
+  "completedAt": "2026-10-31T03:01:13.952Z",
   "environment": {
     "os": "linux",
     "architecture": "x64",
@@ -13,150 +13,208 @@
   },
   "checks": [
     {
-      "name": "agent-negative-control.json",
+      "name": "worker-current-acceptance.json",
       "passed": true,
-      "logSha256": "eaa64eaf5baadefac9ec4baee90f7df05a9a325b600e3abc9497697cccc11887"
+      "logSha256": "bcb111aadbf6805d5c4f3e36cea60ffe931b05dd9cf73fbfdb97f3b000d3f863"
     },
     {
-      "name": "agent-tests",
+      "name": "web-final",
       "passed": true,
-      "logSha256": "64b7c0dbbdbaf767863ff484a18e0956f9e6b2830e399da258694a5933d64cc6"
+      "logSha256": "91c0f23e468dba4057cdf6c13f2d573b8fd405eedc3d498ca5c3e5a37e94f6ab"
     },
     {
-      "name": "server-tests-final",
+      "name": "server-final",
       "passed": true,
-      "logSha256": "acf339c8b0285abf7f0fe6373bbdbeb20369ccea4d0624f7ce7fc5402d0da227"
+      "logSha256": "b20b82ee151a5caa3ec3e34474a7cb82faca5b46c8fc967d681bdc21ac5b70f8"
     },
     {
-      "name": "web-tests",
+      "name": "types-final",
       "passed": true,
-      "logSha256": "065e6d5e583e7aa8098b1a7f89b7044a2bd5934d94bd583933664e9651cf2a44"
+      "logSha256": "ba99afca46e440fe0867f05ab77b84bf1441b168028c8c4b52ffbca4f4ca4837"
     },
     {
-      "name": "typechecks",
+      "name": "web-types-final",
       "passed": true,
-      "logSha256": "3e869a9c6925c503547a04521c2ec8ac32377a558abc06ff2bfda290c978b06a"
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "name": "typecheck-web-final",
+      "name": "build-acceptance.json",
       "passed": true,
-      "logSha256": "103272ef063d7fa1538f64c6f06761940d0cb621f397bb48810986f495cb2e18"
+      "logSha256": "881646e429163639bd9a6b9608451b86a3aea5316310b7283c81cc7e3b91fa0b"
     },
     {
-      "name": "builds",
+      "name": "review-findings-fixed.json",
       "passed": true,
-      "logSha256": "950a23ea578fd991d83671351400721291acaab51e5d0d3b6c9d4359ef852d41"
+      "logSha256": "3154b90794f53fe59971e52c98fa1d31d0c9b13ceaf0c9098e5970f6b6e31ea8"
     },
     {
-      "name": "web-build-final",
+      "name": "lint-final",
       "passed": true,
-      "logSha256": "9e6e02f3aeafbcf2d1a9d468d298d9c3180a288d7bf16d0202da6c681cd23437"
+      "logSha256": "8e9820f44d0e858438e030cf3bc8ddedbaec431a7b4c48e07b2c836c13004681"
     },
     {
-      "name": "build-final-acceptance.json",
+      "name": "agentbuild-final",
       "passed": true,
-      "logSha256": "3091be05629a7d9b520aecdacc051ec4711e508ef33c09a3f01d1e2ff1eed47a"
+      "logSha256": "a385eb88676e244d4ac696902ffc611345a9dc65d1bd02f3afbab0cb99ff7ba0"
     },
     {
-      "name": "timestamp-roundtrip.json",
+      "name": "webbuild-final",
       "passed": true,
-      "logSha256": "948c3df41de558a15c0c8624a2f20b3dc63c88d780cbae3990739876952a2fa7"
+      "logSha256": "20b259930816e19126b56aefca5beaa65e94457ac8af866abe97dbb12f000a9e"
     },
     {
-      "name": "sql-checks.json",
+      "name": "docsbuild-final",
       "passed": true,
-      "logSha256": "d82a585461cc17d9c033827e30fa34a4864fcc726cc52e615a3c3d6989a960fd"
-    },
-    {
-      "name": "sql-upgrade",
-      "passed": true,
-      "logSha256": "f7aea00d523cf3141f336af1edf11b4dd5f106380016924d6d4c97d5b8fc8c41"
-    },
-    {
-      "name": "sql-wait-race",
-      "passed": true,
-      "logSha256": "68473b50acece410a8d9d6fd123cc089b9a29a766e8326814a772121ed20e8fd"
-    },
-    {
-      "name": "browser-review.json",
-      "passed": true,
-      "logSha256": "aa57465a51061ca68a94df4ea5853166a11e4d193a9d4a74240243079485259d"
-    },
-    {
-      "name": "lint",
-      "passed": true,
-      "logSha256": "850debec924d48e5166db3b44749947bee78efa0336adc5cee002f24892e2d08"
+      "logSha256": "8ae59690a6f58af44a46bdddfa5c530e22108483ddc26dab01beaa6873cda0b3"
     },
     {
       "name": "bundle",
       "passed": true,
-      "logSha256": "2ee9ae9df698b4a1231816bd2ee2634f84d2712176d24f2e1e5ef13c7e66b829"
+      "logSha256": "a4fb3238d23d16e74810f5d495a9dde305667a314b8968f642a99087c26152a7"
     },
     {
-      "name": "dependency-audit",
+      "name": "sql-acceptance.json",
       "passed": true,
-      "logSha256": "f09ff9230d0ba7230b04b14fda158c054782c15d31df3babf5ad09a80fd85fa2"
+      "logSha256": "c866e17c6f16ac00f2e15532fdf9add1494ca5065d7ea94dd48068535d785bee"
+    },
+    {
+      "name": "sql-race-acceptance.json",
+      "passed": true,
+      "logSha256": "39216e8a0868cbba6760803dce22d9db6e199075e4aeef87748be84d924d14b8"
+    },
+    {
+      "name": "installed-handoff-acceptance.json",
+      "passed": true,
+      "logSha256": "66882d166000177fba2649bead71c8f749226d3b705b0a0b5efb463033f43f84"
+    },
+    {
+      "name": "package-agent-acceptance.json",
+      "passed": true,
+      "logSha256": "929a78ec12a3b0505f6b85e52a23e434022102cab5ab03612b19d6ec54c24476"
     },
     {
       "name": "package-cli-acceptance.json",
       "passed": true,
-      "logSha256": "2235e0dafc00f035f1aa6ad8be54b01584fc57d857c5d17dba29291affbe0906"
+      "logSha256": "d147d2a6e8dd02dfe2fa7fecf5606f33239908086dc8ab30c4a9d206edcc26d5"
+    },
+    {
+      "name": "release-preflight-tests",
+      "passed": true,
+      "logSha256": "85c6c3765f2e6f6190b2d8b350309c9c264f5260672e93b5fe42ef3da635cd79"
+    },
+    {
+      "name": "ci-deps-test",
+      "passed": true,
+      "logSha256": "1a9a18ac752069c0861d6ec787c93ba095dcc9fe54d25c04f885b98276ef0661"
+    },
+    {
+      "name": "mirror-negative-acceptance.json",
+      "passed": true,
+      "logSha256": "b62f9b9f98a62b9f5d95f021c5c855ad1d100690c0d9ecaa604ea2e430c145d8"
+    },
+    {
+      "name": "final-review-acceptance.json",
+      "passed": true,
+      "logSha256": "3de9d9b016488802fa58264f39f6044affaaa4d66d661b9176c41996eb6f971c"
+    },
+    {
+      "name": "cli-final",
+      "passed": true,
+      "logSha256": "ab59071febc59f0ec65fcd0d488808d82468581b6c3f31252572f9664eeb4e44"
+    },
+    {
+      "name": "coverage-final",
+      "passed": true,
+      "logSha256": "a5622366871499e137a646e041b720604e72443729880f273d83adeca713d58a"
+    },
+    {
+      "name": "unchanged-input-acceptance.json",
+      "passed": true,
+      "logSha256": "5034ecaf453503c9d8a11c2566e8c9e13639d53a605eca36bcb42291f5df9400"
+    },
+    {
+      "name": "antigravity-host-acceptance.json",
+      "passed": true,
+      "logSha256": "7b3e6880aaec1c73c2416ccd990043e30a5ec498681fe17e31ae9b2fbcbfc842"
+    },
+    {
+      "name": "sql-negative-acceptance.json",
+      "passed": true,
+      "logSha256": "12277be6458fa010296da6ff61c397a75c06ce253e6d78e9ca925c57d9cb7d36"
+    },
+    {
+      "name": "worker-redaction-focused-retry",
+      "passed": true,
+      "logSha256": "0fded51eebca0ef2cbfd4a6240956c17ae7efe7757d9e3b21c810770dafdff13"
+    },
+    {
+      "name": "scoped-claim-delegate-acceptance.json",
+      "passed": true,
+      "logSha256": "3767868c6c930da83e80401ab0f4b359e1f28d559ffcbeb5aaac56f9372c331c"
     },
     {
       "name": "cli clean package install and smoke",
       "passed": true,
-      "logSha256": "b8fee934fe4281ec58703558b9f2ac33cce4c98423cc431d743be92ce2ce8922"
+      "logSha256": "df8916d5e7efd3989f35ca97ba6deac630d001a6216354213e76fb8c777ff514"
     }
   ],
   "buildScope": {
     "passed": true,
     "ciWaivedByOwner": true,
-    "agentTests": 999,
-    "serverTests": 3956,
+    "workerTests": 1076,
+    "workerValidation": {
+      "passed": true,
+      "sourceSha": "410b1b4424a4009eb90984472a4401b9fa567644",
+      "tree": "00e284d6f63165d0a96dc9a1b944451cbfc1d542",
+      "uniqueTestsCovered": 1076,
+      "fullSuite": {
+        "passed": 1075,
+        "failed": 1,
+        "exit": 1,
+        "reason": "one beforeEach fixture setup exceeded 10000ms; product assertion did not run",
+        "logSha256": "07d8c7e48162e4b2dbb8da22803e48d23a4b237fc206ec15dab056d812afb902"
+      },
+      "isolatedRetry": {
+        "file": "verify-existing-command.test.ts",
+        "passed": 6,
+        "exit": 0,
+        "logSha256": "0fded51eebca0ef2cbfd4a6240956c17ae7efe7757d9e3b21c810770dafdff13"
+      },
+      "allRequiredAssertionsAccepted": true,
+      "maxWorkers": 4,
+      "testTimeout": 15000,
+      "hookTimeout": 10000,
+      "productDeadlinesUnchanged": true
+    },
+    "serverTests": 4043,
     "serverSkippedTests": 10,
-    "webTests": 3707,
-    "cliTests": 102,
-    "cliScriptTests": 12,
-    "cliCoreTests": 84,
-    "typechecks": [
-      "agent",
-      "cli",
-      "graphql",
-      "web"
-    ],
+    "webTests": 3825,
+    "sqlChecks": 92,
+    "sqlRaces": 5,
+    "installedHandoffScenarios": 5,
+    "releasePreflightTests": 7,
+    "mirrorRecoveryFixtures": 6,
+    "cleanArchiveInstallScope": "Linux x64 Node22; macOS/Windows not run",
     "builds": [
-      "cli-core",
       "agent",
       "cli",
+      "cli-core",
       "web",
       "docs"
     ],
-    "sqlChecks": 86,
-    "publicFunctionsCompared": 505,
-    "concurrentWaitRaces": 6,
-    "competingRepairAdmittedTurns": 1,
-    "browserModes": [
-      "agents",
-      "usage-free",
-      "usage-business",
-      "dark",
-      "mobile-agents",
-      "mobile-usage"
+    "typechecks": [
+      "agent",
+      "graphql",
+      "docs",
+      "web"
     ],
-    "browserActualComponentsWithFixtureData": true,
-    "productionBrowserAuthenticationTested": false,
     "lintErrors": 0,
-    "baselineLintWarnings": 762,
-    "bundlePassed": true,
-    "productionHighCriticalAdvisories": 0,
-    "cleanArchiveInstallScope": "Linux x64 Node22; macOS/Windows matrices not run",
-    "buildStartedAtSource": "0315caf02e280d389efeace1c948fddc371373bd",
-    "closedPrFixIncludedInFinalWebBuild": true,
-    "buildEnvironment": "Repository CI public fixture values; production uses Vercel settings"
+    "productionBrowserTested": false
   },
   "limitations": [
     "GitHub Actions did not run because the account is out of budget.",
-    "Local Linux checks; macOS and Windows installation matrices were not run."
+    "Local Linux checks; macOS and Windows installation matrices were not run.",
+    "The final worker suite had one ten-second fixture-setup timeout; all six cases in that file passed isolated. See buildScope.workerValidation for retained failure/retry evidence."
   ],
   "authorization": "Owner explicitly authorized using local checks instead of GitHub CI on 2026-10-30. Owner instruction: Ignore GitHub CI for now because there is no budget; local testing should eliminate the need for it for now."
 }
