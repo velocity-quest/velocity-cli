@@ -6,11 +6,12 @@ executes Claude or Codex work. Ordinary management requires no LLM key.
 
 ## Install and upgrade
 
-Requires Node.js 20 or newer. Linux, macOS and Windows installation is checked in
-CI. Download the versioned `.tgz` and `.sha256` from
-[Velocity CLI 0.2.40](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.40),
-verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.40.tgz`.
-Upgrade using the next verified archive. Both commands report version `0.2.40`.
+Requires Node.js 20 or newer. This release was verified locally on Linux x64
+with Node20.20.2 and22.22.1; macOS and Windows are untested. See the release
+local-verification.json for the exact checks and owner-authorized CI waiver. Download the versioned `.tgz` and `.sha256` from
+[Velocity CLI 0.2.54](https://github.com/velocity-quest/velocity-cli/releases/tag/cli-v0.2.54),
+verify the SHA-256 checksum, then run `npm install -g ./velocity-quest-cli-0.2.54.tgz`.
+Upgrade using the next verified archive. Both commands report version `0.2.54`.
 
 ```sh
 velocity --version
@@ -317,7 +318,7 @@ both binary names.
 
 Account export, verified email changes, authenticator setup and ownership-safe deletion use their supported APIs or exact browser handoffs. Issue email preferences and actual scheduled delivery are available through the commands below. See the matrix for exact data commands and capability/browser handoffs; ordinary management never uses direct database access.
 
-Maintainers relay a successful main **Management CLI** workflow with `node packages/cli/scripts/release-from-ci.mjs RUN_ID` from its exact commit. Only that checksummed CI artifact is staged in an immutable public candidate branch. Public CI repeats clean installation on all supported platforms before publishing; no local archive is released. The public distribution workflow template lives in `packages/cli/distribution` in the product repository.
+Maintainers relay a successful main **Management CLI** workflow with `node packages/cli/scripts/release-from-ci.mjs RUN_ID ENGIN-ISSUE_NUMBER` from its exact commit. The tracked issue identifier prefixes the public staging commit; a missing or malformed identifier fails with a usage message before any GitHub read or write. Before downloading the artifact, the relay refuses a version that already has a `cli-v*` tag or `release/cli-v*` candidate, or is older than the newest of them, and names the next unused version. Only that checksummed CI artifact is staged in an immutable public candidate branch. Public CI repeats clean installation on all supported platforms before publishing; no local archive is released. The public distribution workflow template lives in `packages/cli/distribution` in the product repository.
 
 ### Private issue attachments
 

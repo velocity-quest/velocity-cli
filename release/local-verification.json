@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "target": "velocity-cli",
-  "version": "0.2.53",
-  "sourceSha": "81c1394c46f91d6354f96d39d953c446e27ddf37",
-  "treeSha": "51863b00cc61f8cdddb0b77b0dcc8e7ea8965410",
-  "archiveSha256": "bc871074382adf36b57265ea9d97d9c1537bd74cf8a4558eece39c4d95824626",
-  "completedAt": "2026-11-15T02:42:53.176Z",
+  "version": "0.2.54",
+  "sourceSha": "0430aa4dc820b7145b4383a2d717f74cd75ec25b",
+  "treeSha": "905d16cb376877a33e92702da77a6313a9779297",
+  "archiveSha256": "457d357e18f235b604b9f55cbf9fe71d7aa9064ed2e20f7d5678212ad7d9366c",
+  "completedAt": "2026-11-21T03:09:01.240Z",
   "environment": {
     "os": "linux",
     "architecture": "x64",
@@ -13,102 +13,173 @@
   },
   "checks": [
     {
-      "name": "source-acceptance.json",
+      "name": "Expected old-behavior failure: refusal-before",
       "passed": true,
-      "logSha256": "dfa9fb2e96383a6557228520ce61d0ec64a3bd5682c3f73dd8436d6c666a92e2"
+      "logSha256": "f374c0b02d109135a024ce72f1d635b136b269ae5e47f848729d345570c71630"
     },
     {
-      "name": "cli-installation-acceptance.json",
+      "name": "Expected old-behavior failure: doctor-before",
       "passed": true,
-      "logSha256": "26d4079ce8702828e3d1f12fbeb6dccd04e675f558ddb3be3a60a11ddaa58ec8"
+      "logSha256": "4b94294a7cb82ef0e6b15e3f0239b5d8c0eade8bf6fd2dfdfcba29602ba63a4b"
     },
     {
-      "name": "package-cli-acceptance.json",
+      "name": "doctor-drain-after",
       "passed": true,
-      "logSha256": "d67717007ea4417bde9b6e23b59e6f15647286e37f7abbac3ae53153a4122bc0"
+      "logSha256": "9a366a058e4e158fca85d44715564de9af2be5c039c63d4ed1d0c8719e80ef5e"
     },
     {
-      "name": "canonical-cli-acceptance.json",
+      "name": "agent-full",
       "passed": true,
-      "logSha256": "07acdff62329e444e16d9b9c591c7dbdf83a355863f276d0cf2a2bb67258b2fc"
+      "logSha256": "13a5f593e12c9f119f79b51e0358dcac8f8e9951e7baed456bf5de73e596797f"
     },
     {
-      "name": "final-review-acceptance.json",
+      "name": "agent-shim-final",
       "passed": true,
-      "logSha256": "0be95d1ea85d2f427d08f8def78385094d3efa4262dad87de0dc0c09c5f58ad4"
+      "logSha256": "fe1f3cf430dfb523d66ed8dd8b02da9a0ef505ac55d51b6d9ab5036b155e25d9"
     },
     {
-      "name": "mcp-final.log",
+      "name": "doctor-final",
       "passed": true,
-      "logSha256": "545e090df3a28d46195aec0d51bf34f105d4f5f70493b39dcfdf232b74521b82"
+      "logSha256": "430eb61200215273e06727009ba45cb87ed9e83393f8b3a9834c5535ce551b0f"
     },
     {
-      "name": "catalog-diagnostics-final.log",
+      "name": "core-tests-final",
       "passed": true,
-      "logSha256": "f7488dd28a32108adf6369a8f7f1018e0def15f7e946124c19f8eb653928deba"
+      "logSha256": "dd15cd039b2e7b0a5c2d11ef3f8899da5704fbd6270f64d5f1b9072e16441968"
     },
     {
-      "name": "diagnostics-before.log",
+      "name": "history-api-final",
       "passed": true,
-      "logSha256": "3fe4daa5f98bec69a81041dcefd4e14991a994e2c0d3af844f5bb732a1246a49"
+      "logSha256": "9de32622818a33c1e5a32628b9967ae070f09fb23f0fafa1ac7b36ae671f21b2"
     },
     {
-      "name": "cli-tests.log",
+      "name": "history-ui-final",
       "passed": true,
-      "logSha256": "936ea20072336d27afb19d37a8da38b17afd04e9cc4533d6c22dabc5d30b6152"
+      "logSha256": "1a18ac5be7b8c282ca12d8071dc3d448e4520ed8113e0e24d45a4acda15d6dda"
     },
     {
-      "name": "cli-coverage-check.log",
+      "name": "graphql-full-final",
       "passed": true,
-      "logSha256": "2224ccad3e5c6862fa348462c5233ceced3ebac4820365415b0cab97ba3d9f09"
+      "logSha256": "646f2e62ef3d31bd35b7c4f7610efc517006c181b7c09e8acaf28726641a1e2d"
     },
     {
-      "name": "web-build.log",
+      "name": "graphql-types-final",
       "passed": true,
-      "logSha256": "c01da4f2226b0c4edcd3503909d168450a374a4c6816db00e6c68e1b839b7a64"
+      "logSha256": "f3edd12f58d2099bba946ec4b0382efc910525b558d503d5d5ed53a6b553555b"
     },
     {
-      "name": "web-types.log",
+      "name": "web-types-final",
       "passed": true,
-      "logSha256": "bb39a2820b1eb6e39bada5f9e1d8f628c472d91c073014ac5f0f299dea9a78b5"
+      "logSha256": "3659ca4c8847f0283432a3bbdcf0f0248ff8b68f3878636e9487dc72b649b596"
     },
     {
-      "name": "web-lint.log",
+      "name": "web-lint-final",
       "passed": true,
-      "logSha256": "5da2f833e18b01caebfdf3e6e18b7eaff23e5b3e5c51e0dabe9e4a0d44d40f9e"
+      "logSha256": "e481cf8239b1da29d270a5255a3c8ecd9c889fdaae9aadf57e6af0f9f7ab1a47"
     },
     {
-      "name": "web-bundle.log",
+      "name": "web-build-final-configured",
       "passed": true,
-      "logSha256": "874cd51752f0a8030ed17d7e83e0e533c046d21b517c70096899f2eef08d4c9f"
+      "logSha256": "dc8cc825d9f1c9ec05fc47ea790d0d8795d7603756c61d612d0a4e6a5e68d85b"
     },
     {
-      "name": "docs-build.log",
+      "name": "web-bundle-final",
       "passed": true,
-      "logSha256": "1967ebb8f1cf40a9b212fccc66f5cc99e28770f8fd39256b6da7ddb90f0b7e5a"
+      "logSha256": "448ebf59527911cb787b9f4a89db83bdc6277bc7a8a2e693b7bef4ed9fba8726"
     },
     {
-      "name": "local-render-acceptance.json",
+      "name": "cli-coverage-final",
       "passed": true,
-      "logSha256": "16cc21e8ecb8b6efb0632422e1e683423b9d8c07d8942911094c991a47f7e718"
+      "logSha256": "df34107c57424933fbb15fc2aceb9b9fc0fb750928daffe76f0c3b1c6ce96821"
     },
     {
-      "name": "dependency-audit.log",
+      "name": "cli-types-final",
+      "passed": true,
+      "logSha256": "7c26c690a5b2b6480da66d5ea56fc9d781e4c353c2b1affc30b6e44da0d044d8"
+    },
+    {
+      "name": "agent-types-final",
+      "passed": true,
+      "logSha256": "c68de7a0d24b2e34a11707f40ff7b2113f56892d0e4fa4d01085bfa4893ef638"
+    },
+    {
+      "name": "mcp-full",
+      "passed": true,
+      "logSha256": "304132a231d4dd348133a5811380a2f363f2535591e8b300d59be88909e9d02d"
+    },
+    {
+      "name": "dependency-audit",
       "passed": true,
       "logSha256": "4d512afa467a972e3a8fb6fe774fdddaba50d6a03f67e3690d59a2a6cd552a5c"
+    },
+    {
+      "name": "worker-artifact-equivalence",
+      "passed": true,
+      "logSha256": "e549c292a117eec69e3b26dc1347975733fa062ed2f3af2938920218fcda45c7"
+    },
+    {
+      "name": "source-acceptance",
+      "passed": true,
+      "logSha256": "354bee30ef965613b5fd5b0136812e0053436d75811563a99d98c931609fdd21"
+    },
+    {
+      "name": "database-final-acceptance",
+      "passed": true,
+      "logSha256": "92f90361534487d6d7390dcb5c64ef0a34477ba3e868e5c296bc20860b56c52e"
+    },
+    {
+      "name": "production-migration-acceptance",
+      "passed": true,
+      "logSha256": "ed80da0d8f331e02a63b0b1bd7d0f6920d949a98bb584ff6c69b47e165c0fc9d"
+    },
+    {
+      "name": "package-cli-acceptance",
+      "passed": true,
+      "logSha256": "609aa619c76f4f449ab3345ac42d8b96d86a8b98cdd6db161cb0b6ce505597f9"
+    },
+    {
+      "name": "cli-installation-acceptance",
+      "passed": true,
+      "logSha256": "09f5357cae6cf0981bd624542d1e6ec52c04b872e2d9f85b4b87ae788a06f199"
+    },
+    {
+      "name": "canonical-archive-cli-acceptance",
+      "passed": true,
+      "logSha256": "19caf0ccf9aa3e4fd0bc69bc9b739e652900c6b17835a921035652207ab97362"
+    },
+    {
+      "name": "final-review-acceptance",
+      "passed": true,
+      "logSha256": "fc3c9bcf2832f71e682c3e9b6f5903a0682cb182bf3bdce8f25538e1cd837fe4"
     }
   ],
   "buildScope": {
+    "counts": {
+      "graphql": 4603,
+      "existingSkipped": 10,
+      "workerFullSuite": 1775,
+      "workerFinalImportRegression": 34,
+      "doctor": 21,
+      "core": 150,
+      "historyApi": 54,
+      "historyUi": 48,
+      "mcp": 561,
+      "databaseFreshAndUpgradeContracts": 8,
+      "webTypesLintBuildBundle": true,
+      "dependencyAudit": true,
+      "generatedCliCoverage": true
+    },
     "binaryTargets": [
+      "velocity-agent",
       "velocity-cli"
     ],
     "installationMatrix": [
       {
         "node": "v20.20.2",
-        "version": "0.2.53",
-        "sourceSha": "8418be3f5dec9f6c02edd6c7c5bb1cef5a36d61e",
-        "tree": "51863b00cc61f8cdddb0b77b0dcc8e7ea8965410",
-        "archiveSha256": "bc871074382adf36b57265ea9d97d9c1537bd74cf8a4558eece39c4d95824626",
+        "version": "0.2.54",
+        "sourceSha": "6c6c5db16aeec19d47295935693c0a714af951a8",
+        "tree": "905d16cb376877a33e92702da77a6313a9779297",
+        "archiveSha256": "457d357e18f235b604b9f55cbf9fe71d7aa9064ed2e20f7d5678212ad7d9366c",
         "prefixFullSmokePassed": true,
         "globalAliasesPassed": true,
         "globalPackageBytesEqual": true,
@@ -127,15 +198,15 @@
             "files": 12
           }
         ],
-        "fileCount": 86,
+        "fileCount": 88,
         "paidModelCalls": 0
       },
       {
         "node": "v22.22.1",
-        "version": "0.2.53",
-        "sourceSha": "8418be3f5dec9f6c02edd6c7c5bb1cef5a36d61e",
-        "tree": "51863b00cc61f8cdddb0b77b0dcc8e7ea8965410",
-        "archiveSha256": "bc871074382adf36b57265ea9d97d9c1537bd74cf8a4558eece39c4d95824626",
+        "version": "0.2.54",
+        "sourceSha": "6c6c5db16aeec19d47295935693c0a714af951a8",
+        "tree": "905d16cb376877a33e92702da77a6313a9779297",
+        "archiveSha256": "457d357e18f235b604b9f55cbf9fe71d7aa9064ed2e20f7d5678212ad7d9366c",
         "prefixFullSmokePassed": true,
         "globalAliasesPassed": true,
         "globalPackageBytesEqual": true,
@@ -154,22 +225,65 @@
             "files": 12
           }
         ],
-        "fileCount": 86,
+        "fileCount": 88,
         "paidModelCalls": 0
       }
     ],
-    "databaseMigrationRequired": false,
+    "databaseMigrationRequired": true,
+    "deploymentTargets": [
+      "database",
+      "web",
+      "public-worker-release",
+      "public-cli-release",
+      "host-install",
+      "hosted-dispatcher"
+    ],
     "githubCiWaivedByOwner": true,
     "untestedPlatforms": [
       "macos",
       "windows"
     ]
   },
+  "review": {
+    "acceptedUnderOwnerException": true,
+    "pr": 426,
+    "reviewedHead": "6c6c5db16aeec19d47295935693c0a714af951a8",
+    "ownerId": "c6451b2c-e5b4-450c-8a44-7193fd88c144",
+    "ownerReply": "Yes",
+    "scope": "One-time unavailable Cursor reviews. No new findings are waived.",
+    "reviewers": [
+      {
+        "reviewer": "Cursor Bugbot",
+        "status": "missing",
+        "conclusion": null,
+        "analysisRan": false,
+        "ownerException": true,
+        "checkId": null
+      },
+      {
+        "reviewer": "Cursor Security Agent: Security Reviewer",
+        "status": "completed",
+        "conclusion": "neutral",
+        "analysisRan": false,
+        "ownerException": true,
+        "checkId": 135922367727
+      },
+      {
+        "reviewer": "Cursor Approval Agent: Pull Request Router and Approver",
+        "status": "completed",
+        "conclusion": "neutral",
+        "analysisRan": false,
+        "ownerException": true,
+        "checkId": 135922368824
+      }
+    ]
+  },
   "limitations": [
-    "GitHub Actions was not run under the owner budget instruction.",
-    "Actual Linux x64 prefix/global install and package smoke checks passed on Node20.20.2 and22.22.1; macOS/Windows are untested.",
-    "No worker runtime, shared runtime or database migration changed.",
-    "No paid model/provider jobs or production fixture writes were used."
+    "Linux x64 installation matrices only; macOS and Windows untested.",
+    "Worker full suite precedes the import-only packaging correction; final host/interruption regressions and actual final archive equivalence/install tests cover that correction.",
+    "Historical original 403 fence was not retained and has not been guessed.",
+    "Cursor Security/Approval reviews failed to start due quota; Bugbot missing. Owner explicitly approved this PR and the one-time exception on November21.",
+    "No GitHub Actions or fake CI/delivery receipts. Source-based tests and exact final archive byte equivalence are recorded."
   ],
-  "authorization": "Owner explicitly directed local testing instead of GitHub CI because there is no Actions budget."
+  "authorization": "Owner directed local tests instead of GitHub Actions and explicitly approved PR426 for merge/deployment and the one-time unavailable-Cursor-review exception."
 }
